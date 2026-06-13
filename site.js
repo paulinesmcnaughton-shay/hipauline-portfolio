@@ -191,7 +191,7 @@
       .concat(PROJECTS.map((p) => ({ name: p.name, href: p.route, warp: p.name, label: p.label, soon: p.soon })))
       .concat([
         { name: "About Me", href: ABOUT_HREF, warp: "ABOUT ME", about: true },
-        { name: "Work with me", href: "/portfolio.html#work-with-me", warp: "WORK WITH ME", workwith: true },
+        { name: "Work together", href: "/portfolio.html#work-with-me", warp: "WORK WITH ME", workwith: true },
         { name: "Classic Portfolio", href: ORIGINAL_SITE, blue: true }
       ]);
 
