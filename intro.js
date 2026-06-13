@@ -12,7 +12,7 @@
 
   /* ---- The one thing to set once Pauline hands over her URL ---- */
   var ORIGINAL_SITE = "portfolio.html"; /* Blue pill → traditional portfolio */
-  var MATRIX_HOME = "matrix.html";     /* Red pill → Matrix portfolio */
+  var MATRIX_HOME = "alternate.html";     /* Red pill → Matrix portfolio */
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

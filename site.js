@@ -24,7 +24,7 @@
 
   /* ABOUT ME is a real, built page; the rest are routes for the live site. */
   const ABOUT_HREF = "/about.html";
-  const HOME_HREF = "/matrix.html";
+  const HOME_HREF = "/alternate.html";
   const ORIGINAL_SITE = "/portfolio.html";
 
   /* ---- Per-section loading copy. ACCESS GRANTED is constant. ---- */
