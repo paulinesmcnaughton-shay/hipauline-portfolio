@@ -414,6 +414,27 @@
   .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ============================================================
+     WORK WITH ME
+     ============================================================ */
+  .wwm-intro { max-width: 680px; margin-bottom: clamp(48px, 7vh, 72px); }
+  .wwm-intro p { font-size: clamp(16px, 1.8vw, 18.5px); line-height: 1.72; color: var(--text-2); margin: 16px 0 0; text-wrap: pretty; }
+  .service-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.5vw, 28px); margin-bottom: clamp(48px, 7vh, 72px); }
+  .service-card {
+    padding: clamp(24px, 3.5vw, 36px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    transition: border-color 0.22s var(--ease), transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+  }
+  .service-card:hover { border-color: var(--border-strong); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(16,24,40,0.08); }
+  .service-num { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); margin: 0 0 16px; }
+  .service-card h3 { font-size: clamp(16px, 1.7vw, 18px); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 10px; }
+  .service-card p { font-size: 14.5px; line-height: 1.6; color: var(--text-2); margin: 0; text-wrap: pretty; }
+  .wwm-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .wwm-cta p { font-size: clamp(17px, 1.9vw, 20px); font-weight: 600; color: var(--text); letter-spacing: -0.015em; margin: 0; }
+  @media (max-width: 820px) { .service-cards { grid-template-columns: 1fr; } }
+
+  /* ============================================================
      CONTACT
      ============================================================ */
   .contact { padding: clamp(84px, 13vh, 156px) 0; border-top: 1px solid var(--border); }
@@ -759,6 +780,40 @@
             <span>Vercel</span>
             <span>v0</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORK WITH ME ===================== -->
+    <section class="block" id="work-with-me">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Services</p>
+          <h2 class="sec-title">Design and build support for businesses moving from idea to launch.</h2>
+        </div>
+        <div class="wwm-intro reveal">
+          <p>I work with founders, small teams, and businesses that need a product-minded designer who can shape the experience, clean up the UX, and help bring the work closer to launch. Whether you're starting from a rough idea, an existing product that feels messy, or a website that needs a stronger first impression, I can help turn it into something clear, polished, and usable.</p>
+        </div>
+        <div class="service-cards">
+          <div class="service-card reveal">
+            <p class="service-num">01</p>
+            <h3>Zero to One Product Design</h3>
+            <p>For new apps, tools, dashboards, and MVPs that need structure, flow, and a polished product experience from the beginning.</p>
+          </div>
+          <div class="service-card reveal">
+            <p class="service-num">02</p>
+            <h3>UX Cleanup and Product Refresh</h3>
+            <p>For existing products that feel confusing, outdated, or hard to use. I help simplify flows, improve screens, and make the experience feel more intentional.</p>
+          </div>
+          <div class="service-card reveal">
+            <p class="service-num">03</p>
+            <h3>Design + Build Support</h3>
+            <p>For businesses that need more than static designs. I can help create responsive pages, prototypes, frontend-ready designs, and lightweight coded experiences.</p>
+          </div>
+        </div>
+        <div class="wwm-cta reveal">
+          <p>Have an idea or product that needs help?</p>
+          <a class="btn btn-primary" href="#contact">Start a project <span class="arr">→</span></a>
         </div>
       </div>
     </section>
