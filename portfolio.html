@@ -497,11 +497,20 @@
   .inquiry-textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
   .inquiry-submit { width: 100%; margin-top: 6px; justify-content: center; padding: 14px; font-size: 15px; }
   .inquiry-err { font-size: 13px; color: #e01228; margin: -4px 0 0; min-height: 16px; }
-  .inquiry-success { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 32px 0 16px; gap: 12px; }
-  .inquiry-success-icon { width: 52px; height: 52px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 12%, transparent); display: flex; align-items: center; justify-content: center; color: var(--accent); }
-  .inquiry-success-icon svg { width: 26px; height: 26px; }
-  .inquiry-success h3 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
-  .inquiry-success p { margin: 0; font-size: 14.5px; color: var(--text-2); line-height: 1.6; max-width: 360px; }
+  /* Submission toast */
+  .inquiry-toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px);
+    z-index: 500; display: flex; align-items: center; gap: 10px;
+    padding: 13px 20px; border-radius: 999px;
+    background: var(--text); color: var(--bg);
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 8px 28px rgba(16,24,40,0.22);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+    white-space: nowrap;
+  }
+  .inquiry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .inquiry-toast svg { width: 16px; height: 16px; flex: none; }
   @media (max-width: 540px) {
     .inquiry-card { padding: 24px 20px 20px; border-radius: 14px; }
     .inquiry-row { grid-template-columns: 1fr; }
@@ -949,15 +958,6 @@
         <p class="inquiry-err" id="inquiryErr" role="alert"></p>
         <button class="btn btn-primary inquiry-submit" type="submit" id="inquirySubmit">Send inquiry <span class="arr">→</span></button>
       </form>
-
-      <div class="inquiry-success" id="inquirySuccess" hidden>
-        <div class="inquiry-success-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-        </div>
-        <h3>Message sent</h3>
-        <p>Thanks for reaching out. I'll review your inquiry and follow up if it feels like a good fit.</p>
-        <button class="btn btn-ghost" type="button" id="inquiryDoneBtn" style="margin-top:8px">Close</button>
-      </div>
     </div>
   </div>
 
@@ -985,6 +985,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="inquiry-toast" id="inquiryToast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+    Message sent
   </div>
 
   <!-- ===================== FOOTER ===================== -->
@@ -1035,11 +1040,18 @@
   <script src="gate.js"></script>
   <script>
   (function () {
-    const overlay = document.getElementById("inquiryModal")
-    const form    = document.getElementById("inquiryForm")
-    const errEl   = document.getElementById("inquiryErr")
-    const success = document.getElementById("inquirySuccess")
+    const overlay   = document.getElementById("inquiryModal")
+    const form      = document.getElementById("inquiryForm")
+    const errEl     = document.getElementById("inquiryErr")
     const submitBtn = document.getElementById("inquirySubmit")
+    const toast     = document.getElementById("inquiryToast")
+    let toastTimer
+
+    function showToast() {
+      clearTimeout(toastTimer)
+      toast.classList.add("show")
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 4000)
+    }
 
     function openModal() {
       overlay.hidden = false
@@ -1055,7 +1067,6 @@
 
     document.getElementById("inquiryOpenBtn").addEventListener("click", openModal)
     document.getElementById("inquiryCloseBtn").addEventListener("click", closeModal)
-    document.getElementById("inquiryDoneBtn").addEventListener("click", closeModal)
     overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal() })
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !overlay.hidden) closeModal() })
 
@@ -1079,13 +1090,15 @@
           body: new FormData(form)
         })
         if (res.ok) {
-          form.hidden = true
-          success.hidden = false
+          closeModal()
+          form.reset()
+          setTimeout(showToast, 280)
         } else {
           throw new Error("not ok")
         }
       } catch {
         errEl.textContent = "Something went wrong — please email me directly at hipaulineshay@gmail.com"
+      } finally {
         submitBtn.disabled = false
         submitBtn.innerHTML = "Send inquiry <span class=\"arr\">→</span>"
       }
