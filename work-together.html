@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Work Together — Pauline McNaughton | Product Designer</title>
+<meta name="description" content="Work with Pauline Shay — design and build support for founders, small teams, and businesses moving from idea to launch." />
+<meta property="og:title" content="Work Together — Pauline McNaughton | Product Designer" />
+<meta property="og:description" content="Design and build support for businesses moving from idea to launch." />
+<meta property="og:url" content="https://hipauline.com/work-together" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://hipauline.com/work-together" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; }
+  body {
+    background: #050806;
+    color: #dbe5dd;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .about {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 15vh, 170px) 30px clamp(90px, 16vh, 160px);
+  }
+
+  .title {
+    margin: 0 0 clamp(44px, 8vh, 84px);
+    font-weight: 300;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #f1f6f2;
+  }
+  .title .dot {
+    display: inline-block;
+    font-size: 2em;
+    line-height: 0;
+    vertical-align: baseline;
+    color: var(--neon);
+    text-shadow: 0 0 12px rgba(60,255,150,0.7), 0 0 30px rgba(40,220,120,0.45);
+    animation: dot-blink 1.15s steps(1, end) infinite;
+  }
+  @keyframes dot-blink {
+    0%, 55%   { opacity: 1; }
+    56%, 100% { opacity: 0.12; }
+  }
+
+  .essay {
+    font-size: clamp(17px, 2.1vw, 20px);
+    line-height: 1.82;
+    font-weight: 400;
+    color: #cdd8d0;
+  }
+  .essay p { margin: 0 0 1.7em; text-wrap: pretty; }
+  .essay strong { color: #f1f6f2; font-weight: 500; }
+
+  .mx-section-label {
+    margin: clamp(52px, 9vh, 88px) 0 22px;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--neon);
+    opacity: 0.7;
+  }
+  .mx-section-label::before { content: "// "; opacity: 0.6; }
+
+  /* ---- Service cards ---- */
+  .mx-services {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(93,255,150,0.14);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: clamp(44px, 7vh, 72px);
+  }
+  .mx-service {
+    padding: 22px 24px;
+    border-bottom: 1px solid rgba(93,255,150,0.10);
+    background: rgba(93,255,150,0.02);
+    transition: background 0.18s ease;
+  }
+  .mx-service:last-child { border-bottom: none; }
+  .mx-service:hover { background: rgba(93,255,150,0.05); }
+  .mx-service-num {
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--neon);
+    opacity: 0.6;
+    margin: 0 0 9px;
+  }
+  .mx-service h3 {
+    margin: 0 0 7px;
+    font-size: clamp(15px, 1.8vw, 17px);
+    font-weight: 500;
+    color: #f1f6f2;
+    letter-spacing: -0.01em;
+  }
+  .mx-service p {
+    margin: 0;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    color: rgba(214,255,226,0.55);
+  }
+
+  /* ---- CTA ---- */
+  .mx-cta { margin-bottom: clamp(44px, 7vh, 72px); }
+  .mx-cta p {
+    margin: 0 0 18px;
+    font-size: clamp(16px, 1.9vw, 18px);
+    color: #cdd8d0;
+    line-height: 1.6;
+  }
+  .mx-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: #010802; background: #5dff96;
+    padding: 13px 22px; border-radius: 999px; border: none; cursor: pointer;
+    box-shadow: 0 0 18px rgba(93,255,150,0.28);
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .mx-btn:hover { background: #7affaa; box-shadow: 0 0 28px rgba(93,255,150,0.42); transform: translateY(-1px); }
+  .mx-btn:focus-visible { outline: 2px solid rgba(93,255,150,0.7); outline-offset: 3px; }
+
+  /* ---- Blue pill return link ---- */
+  .blue-pill {
+    display: inline-block;
+    margin-top: clamp(50px, 9vh, 92px);
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #5b9dff; text-decoration: none;
+    text-shadow: 0 0 12px rgba(91,157,255,0.45);
+    border-bottom: 1px solid rgba(91,157,255,0.35);
+    padding-bottom: 4px;
+    transition: color 0.2s ease, border-color 0.2s ease, text-shadow 0.2s ease;
+  }
+  .blue-pill:hover, .blue-pill:focus-visible {
+    color: #93bcff; border-color: rgba(147,188,255,0.75);
+    text-shadow: 0 0 18px rgba(91,157,255,0.7); outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .title .dot { animation: none; opacity: 1; }
+  }
+
+  /* ---- Inquiry modal (Matrix dark theme) ---- */
+  .inquiry-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(0,4,0,0.78);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity 0.24s ease;
+  }
+  .inquiry-overlay.open { opacity: 1; pointer-events: auto; }
+  .inquiry-card {
+    position: relative; width: 100%; max-width: 600px;
+    max-height: 92vh; overflow-y: auto;
+    background: #040e04; color: #d6ffe2;
+    border: 1px solid rgba(93,255,150,0.22); border-radius: 18px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 40px rgba(0,60,20,0.14);
+    transform: translateY(12px) scale(0.985);
+    transition: transform 0.26s cubic-bezier(0.22,1,0.36,1);
+  }
+  .inquiry-overlay.open .inquiry-card { transform: none; }
+  .inquiry-card-title { margin: 0 0 6px; font-size: 19px; font-weight: 500; letter-spacing: -0.02em; color: #f1f6f2; }
+  .inquiry-intro { margin: 0 0 24px; font-size: 13px; line-height: 1.6; color: rgba(214,255,226,0.62); font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+  .inquiry-fields { display: flex; flex-direction: column; gap: 14px; }
+  .inquiry-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .inquiry-field { display: flex; flex-direction: column; gap: 6px; }
+  .inquiry-label {
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(93,255,150,0.65);
+  }
+  .inquiry-input, .inquiry-select, .inquiry-textarea {
+    width: 100%; padding: 11px 13px;
+    font-size: 14px; font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    letter-spacing: 0.02em; color: #d6ffe2;
+    background: #010802;
+    border: 1px solid rgba(93,255,150,0.18); border-radius: 10px;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .inquiry-input::placeholder, .inquiry-textarea::placeholder { color: rgba(214,255,226,0.28); }
+  .inquiry-input:focus, .inquiry-select:focus, .inquiry-textarea:focus {
+    border-color: #5dff96; box-shadow: 0 0 0 3px rgba(93,255,150,0.14);
+  }
+  .inquiry-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235dff96' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-color: #010802; padding-right: 36px; cursor: pointer; }
+  .inquiry-select option { background: #040e04; color: #d6ffe2; }
+  .inquiry-textarea { resize: vertical; min-height: 90px; line-height: 1.55; }
+  .inquiry-err { font-size: 12px; color: #ff6b7a; margin: -4px 0 0; min-height: 16px; font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace; }
+  .inquiry-submit {
+    width: 100%; margin-top: 4px;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase;
+    color: #010802; background: #5dff96;
+    padding: 13px 20px; border-radius: 10px; border: none; cursor: pointer;
+    box-shadow: 0 0 16px rgba(93,255,150,0.26);
+    transition: background 0.18s ease, box-shadow 0.18s ease;
+  }
+  .inquiry-submit:hover { background: #7affaa; box-shadow: 0 0 26px rgba(93,255,150,0.4); }
+  .inquiry-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+  .gate-x {
+    position: absolute; top: 14px; right: 14px;
+    width: 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; cursor: pointer; background: transparent;
+    color: rgba(214,255,226,0.4); font-size: 18px; line-height: 1;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .gate-x:hover { background: rgba(93,255,150,0.08); color: #5dff96; }
+
+  /* Submission toast */
+  .inquiry-toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px);
+    z-index: 500; display: flex; align-items: center; gap: 10px;
+    padding: 12px 20px; border-radius: 999px;
+    background: #5dff96; color: #010802;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    box-shadow: 0 0 28px rgba(93,255,150,0.45);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    white-space: nowrap;
+  }
+  .inquiry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .inquiry-toast svg { width: 15px; height: 15px; flex: none; }
+
+  @media (max-width: 540px) {
+    .inquiry-card { padding: 24px 18px 20px; border-radius: 14px; }
+    .inquiry-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <main class="about" data-page>
+    <h1 class="title">Work Together<span class="dot">.</span></h1>
+
+    <div class="essay">
+      <p>I work with founders, small teams, and businesses that need a product-minded designer who can shape the experience, clean up the UX, and help bring the work closer to launch.</p>
+
+      <p>Whether you're starting from a rough idea, an existing product that feels messy, or a website that needs a stronger first impression, I can help turn it into something <strong>clear, polished, and usable.</strong></p>
+
+      <p class="mx-section-label">What I can help with</p>
+    </div>
+
+    <div class="mx-services">
+      <div class="mx-service">
+        <p class="mx-service-num">01</p>
+        <h3>Zero to One Product Design</h3>
+        <p>For new apps, tools, dashboards, and MVPs that need structure, flow, and a polished product experience from the beginning.</p>
+      </div>
+      <div class="mx-service">
+        <p class="mx-service-num">02</p>
+        <h3>UX Cleanup and Product Refresh</h3>
+        <p>For existing products that feel confusing, outdated, or hard to use. I help simplify flows, improve screens, and make the experience feel more intentional.</p>
+      </div>
+      <div class="mx-service">
+        <p class="mx-service-num">03</p>
+        <h3>Design + Build Support</h3>
+        <p>For businesses that need more than static designs. I can help create responsive pages, prototypes, frontend-ready designs, and lightweight coded experiences.</p>
+      </div>
+    </div>
+
+    <div class="mx-cta">
+      <p>Have an idea or product that needs help?</p>
+      <button class="mx-btn" id="inquiryOpenBtn" type="button">Work together <span>→</span></button>
+    </div>
+
+    <a class="blue-pill" href="/matrix.html" data-warp="HOME" aria-label="Return to the Matrix home">← Back to the Matrix</a>
+  </main>
+
+  <!-- Inquiry modal -->
+  <div class="inquiry-overlay" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" hidden>
+    <div class="inquiry-card">
+      <button class="gate-x" type="button" id="inquiryCloseBtn" aria-label="Close">×</button>
+      <h2 class="inquiry-card-title" id="inquiryTitle">Start a project</h2>
+      <p class="inquiry-intro">Share a few details and I'll follow up if it feels like a good fit.</p>
+
+      <form class="inquiry-fields" id="inquiryForm" action="https://formspree.io/f/mqeogodr" method="POST" novalidate>
+        <div class="inquiry-row">
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqName">Name</label>
+            <input class="inquiry-input" id="inqName" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqEmail">Email</label>
+            <input class="inquiry-input" id="inqEmail" name="email" type="email" placeholder="you@email.com" required />
+          </div>
+        </div>
+        <div class="inquiry-field">
+          <label class="inquiry-label" for="inqCompany">Company or business</label>
+          <input class="inquiry-input" id="inqCompany" name="company" type="text" placeholder="Company, startup, or personal project" />
+        </div>
+        <div class="inquiry-field">
+          <label class="inquiry-label" for="inqHelp">What do you need help with?</label>
+          <select class="inquiry-select" id="inqHelp" name="help_type" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Product from zero to one</option>
+            <option>UX cleanup or product refresh</option>
+            <option>Website design or redesign</option>
+            <option>Design + build support</option>
+            <option>AI workflow or dashboard</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="inquiry-field">
+          <label class="inquiry-label" for="inqProject">Tell me about the project</label>
+          <textarea class="inquiry-textarea" id="inqProject" name="project_details" placeholder="What are you building, fixing, or trying to improve?"></textarea>
+        </div>
+        <div class="inquiry-row">
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqTimeline">When do you need help?</label>
+            <select class="inquiry-select" id="inqTimeline" name="timeline">
+              <option value="" disabled selected>Select timeline</option>
+              <option>ASAP</option>
+              <option>This month</option>
+              <option>Next 1–3 months</option>
+              <option>Flexible timeline</option>
+            </select>
+          </div>
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqBudget">Budget range</label>
+            <select class="inquiry-select" id="inqBudget" name="budget">
+              <option value="" disabled selected>Select range</option>
+              <option>Under $5k</option>
+              <option>$5k–$10k</option>
+              <option>$10k–$25k</option>
+              <option>$25k+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <p class="inquiry-err" id="inquiryErr" role="alert"></p>
+        <button class="inquiry-submit" type="submit" id="inquirySubmit">Send inquiry →</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="inquiry-toast" id="inquiryToast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+    Message sent
+  </div>
+
+  <script src="site.js"></script>
+  <script>
+  (function () {
+    const overlay   = document.getElementById("inquiryModal")
+    const form      = document.getElementById("inquiryForm")
+    const errEl     = document.getElementById("inquiryErr")
+    const submitBtn = document.getElementById("inquirySubmit")
+    const toast     = document.getElementById("inquiryToast")
+    let toastTimer
+
+    function showToast() {
+      clearTimeout(toastTimer)
+      toast.classList.add("show")
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 4000)
+    }
+    function openModal() {
+      overlay.hidden = false
+      requestAnimationFrame(() => overlay.classList.add("open"))
+      document.body.style.overflow = "hidden"
+      document.getElementById("inqName").focus()
+    }
+    function closeModal() {
+      overlay.classList.remove("open")
+      document.body.style.overflow = ""
+      setTimeout(() => { overlay.hidden = true }, 260)
+    }
+
+    document.getElementById("inquiryOpenBtn").addEventListener("click", openModal)
+    document.getElementById("inquiryCloseBtn").addEventListener("click", closeModal)
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal() })
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !overlay.hidden) closeModal() })
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault()
+      errEl.textContent = ""
+      const name  = document.getElementById("inqName").value.trim()
+      const email = document.getElementById("inqEmail").value.trim()
+      const help  = document.getElementById("inqHelp").value
+      if (!name)  { errEl.textContent = "Please enter your name."; return }
+      if (!email) { errEl.textContent = "Please enter your email."; return }
+      if (!help)  { errEl.textContent = "Please select what you need help with."; return }
+
+      submitBtn.disabled = true
+      submitBtn.textContent = "Sending…"
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: new FormData(form)
+        })
+        if (res.ok) {
+          closeModal()
+          form.reset()
+          setTimeout(showToast, 280)
+        } else {
+          throw new Error("not ok")
+        }
+      } catch {
+        errEl.textContent = "Something went wrong — email me at hipaulineshay@gmail.com"
+      } finally {
+        submitBtn.disabled = false
+        submitBtn.textContent = "Send inquiry →"
+      }
+    })
+  })()
+  </script>
+</body>
+</html>
