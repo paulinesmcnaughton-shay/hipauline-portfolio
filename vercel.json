@@ -2,8 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/matrix", "destination": "/alternate", "permanent": true },
-    { "source": "/matrix.html", "destination": "/alternate", "permanent": true }
+    { "source": "/matrix", "destination": "/portfolio2", "permanent": true },
+    { "source": "/matrix.html", "destination": "/portfolio2", "permanent": true }
   ],
   "headers": [
     {
