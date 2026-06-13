@@ -460,6 +460,53 @@
   .contact-link .muted { color: var(--text-3); font-weight: 500; margin-left: 2px; }
   .contact-link > .arr { margin-left: auto; }
 
+  /* ---------- Project inquiry modal ---------- */
+  .inquiry-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: color-mix(in srgb, var(--text) 38%, transparent);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity 0.24s var(--ease);
+  }
+  .inquiry-overlay.open { opacity: 1; pointer-events: auto; }
+  .inquiry-card {
+    position: relative; width: 100%; max-width: 600px;
+    max-height: 92vh; overflow-y: auto;
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 18px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 24px 70px rgba(16,24,40,0.28);
+    transform: translateY(12px) scale(0.985); transition: transform 0.26s var(--ease);
+  }
+  .inquiry-overlay.open .inquiry-card { transform: none; }
+  .inquiry-intro { margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: var(--text-2); }
+  .inquiry-fields { display: flex; flex-direction: column; gap: 14px; }
+  .inquiry-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .inquiry-field { display: flex; flex-direction: column; gap: 6px; }
+  .inquiry-label { font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-3); }
+  .inquiry-input, .inquiry-select, .inquiry-textarea {
+    width: 100%; padding: 12px 14px; font-size: 15px; font-family: inherit; color: var(--text);
+    background: var(--bg-subtle); border: 1px solid var(--border-strong); border-radius: 11px;
+    outline: none; transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+  }
+  .inquiry-input:focus, .inquiry-select:focus, .inquiry-textarea:focus {
+    border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+  .inquiry-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; cursor: pointer; }
+  .inquiry-select option { background: var(--surface); color: var(--text); }
+  .inquiry-textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
+  .inquiry-submit { width: 100%; margin-top: 6px; justify-content: center; padding: 14px; font-size: 15px; }
+  .inquiry-err { font-size: 13px; color: #e01228; margin: -4px 0 0; min-height: 16px; }
+  .inquiry-success { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 32px 0 16px; gap: 12px; }
+  .inquiry-success-icon { width: 52px; height: 52px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 12%, transparent); display: flex; align-items: center; justify-content: center; color: var(--accent); }
+  .inquiry-success-icon svg { width: 26px; height: 26px; }
+  .inquiry-success h3 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+  .inquiry-success p { margin: 0; font-size: 14.5px; color: var(--text-2); line-height: 1.6; max-width: 360px; }
+  @media (max-width: 540px) {
+    .inquiry-card { padding: 24px 20px 20px; border-radius: 14px; }
+    .inquiry-row { grid-template-columns: 1fr; }
+  }
+
   /* ---------- Resume password gate ---------- */
   .gate-overlay {
     position: fixed; inset: 0; z-index: 200;
@@ -813,7 +860,7 @@
         </div>
         <div class="wwm-cta reveal">
           <p>Have an idea or product that needs help?</p>
-          <a class="btn btn-primary" href="#contact">Start a project <span class="arr">→</span></a>
+          <button class="btn btn-primary" id="inquiryOpenBtn" type="button">Work together <span class="arr">→</span></button>
         </div>
       </div>
     </section>
@@ -837,6 +884,85 @@
     </section>
 
   </main>
+
+  <!-- ===================== PROJECT INQUIRY MODAL ===================== -->
+  <!-- TODO: Wire up form submission — sign up at formspree.io, create a form,
+       then replace YOUR_FORM_ID below with the ID they give you (e.g. xbljonrk).
+       The form will then email paulinesmcnaughton@gmail.com on every submission. -->
+  <div class="inquiry-overlay" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" hidden>
+    <div class="inquiry-card">
+      <button class="gate-x" type="button" id="inquiryCloseBtn" aria-label="Close">×</button>
+      <h2 class="gate-title" id="inquiryTitle">Start a project</h2>
+      <p class="inquiry-intro">Have an idea, product, or website that needs help? Share a few details and I'll follow up if it feels like a good fit.</p>
+
+      <form class="inquiry-fields" id="inquiryForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+        <div class="inquiry-row">
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqName">Name</label>
+            <input class="inquiry-input" id="inqName" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqEmail">Email</label>
+            <input class="inquiry-input" id="inqEmail" name="email" type="email" placeholder="you@email.com" required />
+          </div>
+        </div>
+        <div class="inquiry-field">
+          <label class="inquiry-label" for="inqCompany">Company or business</label>
+          <input class="inquiry-input" id="inqCompany" name="company" type="text" placeholder="Company, startup, or personal project" />
+        </div>
+        <div class="inquiry-field">
+          <label class="inquiry-label" for="inqHelp">What do you need help with?</label>
+          <select class="inquiry-select" id="inqHelp" name="help_type" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Product from zero to one</option>
+            <option>UX cleanup or product refresh</option>
+            <option>Website design or redesign</option>
+            <option>Design + build support</option>
+            <option>AI workflow or dashboard</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="inquiry-field">
+          <label class="inquiry-label" for="inqProject">Tell me about the project</label>
+          <textarea class="inquiry-textarea" id="inqProject" name="project_details" placeholder="What are you building, fixing, or trying to improve?"></textarea>
+        </div>
+        <div class="inquiry-row">
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqTimeline">When do you need help?</label>
+            <select class="inquiry-select" id="inqTimeline" name="timeline">
+              <option value="" disabled selected>Select timeline</option>
+              <option>ASAP</option>
+              <option>This month</option>
+              <option>Next 1–3 months</option>
+              <option>Flexible timeline</option>
+            </select>
+          </div>
+          <div class="inquiry-field">
+            <label class="inquiry-label" for="inqBudget">Budget range</label>
+            <select class="inquiry-select" id="inqBudget" name="budget">
+              <option value="" disabled selected>Select range</option>
+              <option>Under $5k</option>
+              <option>$5k–$10k</option>
+              <option>$10k–$25k</option>
+              <option>$25k+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <p class="inquiry-err" id="inquiryErr" role="alert"></p>
+        <button class="btn btn-primary inquiry-submit" type="submit" id="inquirySubmit">Send inquiry <span class="arr">→</span></button>
+      </form>
+
+      <div class="inquiry-success" id="inquirySuccess" hidden>
+        <div class="inquiry-success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Message sent</h3>
+        <p>Thanks for reaching out. I'll review your inquiry and follow up if it feels like a good fit.</p>
+        <button class="btn btn-ghost" type="button" id="inquiryDoneBtn" style="margin-top:8px">Close</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== RESUME PASSWORD GATE ===================== -->
   <div class="gate-overlay" id="resumeGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle" hidden>
@@ -910,5 +1036,64 @@
 
   </script>
   <script src="gate.js"></script>
+  <script>
+  (function () {
+    const overlay = document.getElementById("inquiryModal")
+    const form    = document.getElementById("inquiryForm")
+    const errEl   = document.getElementById("inquiryErr")
+    const success = document.getElementById("inquirySuccess")
+    const submitBtn = document.getElementById("inquirySubmit")
+
+    function openModal() {
+      overlay.hidden = false
+      requestAnimationFrame(() => overlay.classList.add("open"))
+      document.body.style.overflow = "hidden"
+      document.getElementById("inqName").focus()
+    }
+    function closeModal() {
+      overlay.classList.remove("open")
+      document.body.style.overflow = ""
+      setTimeout(() => { overlay.hidden = true }, 260)
+    }
+
+    document.getElementById("inquiryOpenBtn").addEventListener("click", openModal)
+    document.getElementById("inquiryCloseBtn").addEventListener("click", closeModal)
+    document.getElementById("inquiryDoneBtn").addEventListener("click", closeModal)
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal() })
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !overlay.hidden) closeModal() })
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault()
+      errEl.textContent = ""
+      const name  = document.getElementById("inqName").value.trim()
+      const email = document.getElementById("inqEmail").value.trim()
+      const help  = document.getElementById("inqHelp").value
+      if (!name)  { errEl.textContent = "Please enter your name."; return }
+      if (!email) { errEl.textContent = "Please enter your email."; return }
+      if (!help)  { errEl.textContent = "Please select what you need help with."; return }
+
+      submitBtn.disabled = true
+      submitBtn.textContent = "Sending…"
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: new FormData(form)
+        })
+        if (res.ok) {
+          form.hidden = true
+          success.hidden = false
+        } else {
+          throw new Error("not ok")
+        }
+      } catch {
+        errEl.textContent = "Something went wrong — please email me directly at paulinesmcnaughton@gmail.com"
+        submitBtn.disabled = false
+        submitBtn.innerHTML = "Send inquiry <span class=\"arr\">→</span>"
+      }
+    })
+  })()
+  </script>
 </body>
 </html>
