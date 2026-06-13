@@ -1,0 +1,109 @@
+/* ============================================================
+   Matrix world — dark overrides for case-study.css
+   Applied on top of case-study.css for all Matrix case studies.
+   ============================================================ */
+:root {
+  --bg:           #000400;
+  --bg-subtle:    #010802;
+  --surface:      #040e04;
+  --text:         #d6ffe2;
+  --text-2:       rgba(214, 255, 226, 0.65);
+  --text-3:       rgba(214, 255, 226, 0.38);
+  --border:       rgba(93, 255, 150, 0.10);
+  --border-strong:rgba(93, 255, 150, 0.18);
+}
+
+/* Nav */
+nav.top { display: none; }
+
+/* Back link — vertically centered to match the menu button (top:22 + height:48 + bottom:22 = 92px) */
+.backbar {
+  display: flex;
+  align-items: center;
+  height: 92px;
+  padding: 0;
+}
+
+/* Hero — 80px gap below the back link */
+.cs-hero { padding-top: 80px; }
+.wordmark .dot { background: #5dff96; }
+
+/* Hero image */
+.cs-hero-img {
+  border-color: rgba(93, 255, 150, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 50px rgba(0, 60, 20, 0.12);
+}
+
+/* Goal cards */
+.goal:hover {
+  box-shadow: 0 14px 34px rgba(0, 50, 15, 0.14);
+}
+
+/* Placeholder */
+.cs-placeholder {
+  border-color: rgba(93, 255, 150, 0.18);
+}
+
+/* Flow connector line */
+.flow:not(:last-child)::before {
+  background: linear-gradient(rgba(93, 255, 150, 0.18), rgba(93, 255, 150, 0));
+}
+
+/* Footer */
+footer.site {
+  border-top-color: rgba(93, 255, 150, 0.10);
+  background: var(--bg-subtle);
+}
+
+/* Blue Pill footer link — the escape hatch from the Matrix */
+.foot-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #5b9dff;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(91, 157, 255, 0.35);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.foot-blue .pill {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5b9dff;
+  box-shadow: 0 0 10px rgba(91, 157, 255, 0.7);
+  flex: none;
+}
+.foot-blue:hover {
+  color: #93bcff;
+  border-color: #5b9dff;
+  background: rgba(91, 157, 255, 0.08);
+}
+
+/* CTA buttons — neon green to match Matrix theme */
+.btn-primary {
+  background: #5dff96;
+  color: #010802;
+  box-shadow: 0 0 18px rgba(93, 255, 150, 0.28);
+}
+.btn-primary:hover {
+  background: #7affaa;
+  box-shadow: 0 0 28px rgba(93, 255, 150, 0.42);
+}
+.btn-ghost {
+  background: transparent;
+  color: #5dff96;
+  border-color: rgba(93, 255, 150, 0.35);
+}
+.btn-ghost:hover {
+  background: rgba(93, 255, 150, 0.08);
+  border-color: rgba(93, 255, 150, 0.65);
+}
+
+/* Case study images embedded in body */
+.cs-img {
+  border-color: rgba(93, 255, 150, 0.10);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}

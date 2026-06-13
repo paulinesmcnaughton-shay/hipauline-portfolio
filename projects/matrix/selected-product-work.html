@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Selected Product Work — Pauline Shay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../site.css" />
+<link rel="stylesheet" href="../case-study.css" />
+<link rel="stylesheet" href="matrix-case-study.css" />
+<style>
+  :root { --accent: #2a6fdb; }
+
+  /* ---- Selected-work stacked project cards ---- */
+  .sw-list { margin: 32px 0 0; display: flex; flex-direction: column; gap: 22px; }
+  .sw-item {
+    border: 1px solid var(--border); border-radius: 22px;
+    background: var(--bg-subtle);
+    padding: clamp(26px, 3vw, 40px);
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .sw-item:hover { border-color: var(--border-strong); box-shadow: 0 16px 42px rgba(16,24,40,0.06); }
+
+  .sw-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 28px; flex-wrap: wrap; }
+  .sw-eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3);
+  }
+  .sw-eyebrow::before { content: ""; width: 18px; height: 1.5px; background: var(--accent); border-radius: 2px; }
+  .sw-head-l { flex: 1 1 420px; min-width: 280px; }
+  .sw-item h3 { margin: 14px 0 0; font-size: clamp(24px, 3vw, 32px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+  .sw-summary { margin: 13px 0 0; max-width: 600px; font-size: clamp(16px, 1.75vw, 18px); line-height: 1.58; color: var(--text-2); text-wrap: pretty; }
+
+  .sw-meta { display: flex; gap: 30px; flex: 0 0 auto; padding-top: 4px; }
+  .sw-meta .row { display: flex; flex-direction: column; gap: 4px; }
+  .sw-meta .k { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+  .sw-meta .v { font-size: 14.5px; font-weight: 600; color: var(--text); white-space: nowrap; }
+
+  .sw-body {
+    margin: 26px 0 0; padding-top: 26px; border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px 56px; align-items: start;
+  }
+  .sw-body > p { margin: 0; font-size: clamp(15.5px, 1.7vw, 16.5px); line-height: 1.7; color: var(--text-2); text-wrap: pretty; }
+  .sw-contrib .clabel { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+  .sw-contrib ul { margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .sw-contrib li {
+    display: flex; align-items: flex-start; gap: 11px;
+    font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--text);
+  }
+  .sw-contrib li .tick {
+    flex: none; margin-top: 1px; width: 18px; height: 18px; border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .sw-contrib li .tick svg { width: 11px; height: 11px; }
+  @media (max-width: 760px) {
+    .sw-top { gap: 18px; }
+    .sw-meta { gap: 24px; }
+    .sw-body { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+</head>
+<body data-screen-label="Selected Product Work" data-page="selected-product-work">
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a class="wordmark" href="/matrix.html" data-warp="HOME"><span class="dot"></span>Pauline Shay</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="backbar">
+      <a class="back" href="/matrix.html" data-warp="HOME">//Back</a>
+    </div>
+
+    <section class="cs-hero">
+      <img class="cs-hero-img" src="../../assets/work-additional.png?v=2" alt="Selected Product Work — Wheels, Perromart, Fōkcus, Hyperloop TT" />
+    </section>
+
+    <section class="cs-head">
+      <div>
+        <p class="cs-eyebrow">Selected Work</p>
+        <h1 class="cs-title">Selected Product Work</h1>
+        <p class="cs-summary">A collection of smaller product design projects across mobility, e-commerce, mentorship, and future transportation.</p>
+      </div>
+      <div class="cs-meta">
+        <div class="row"><span class="k">Role</span><span class="v">Product Designer</span></div>
+        <div class="row"><span class="k">Span</span><span class="v">2018 to 2020</span></div>
+        <div class="row"><span class="k">Projects</span><span class="v">4</span></div>
+      </div>
+    </section>
+
+    <section class="cs-intro">
+      <p class="cs-kicker">Overview</p>
+      <p class="lead">A collection of smaller product design projects across mobility, e-commerce, mentorship, and future transportation.</p>
+      <p>These projects were shorter engagements or supporting product explorations, so they are grouped together as selected work rather than presented as individual case studies.</p>
+      <p>Across these projects, I contributed to mobile app flows, responsive web experiences, marketplace patterns, concept exploration, product structure, and interface design across different industries and product stages.</p>
+    </section>
+
+    <section class="cs-section">
+      <p class="cs-kicker">The projects</p>
+      <div class="sw-list">
+
+        <article class="sw-item">
+          <div class="sw-top">
+            <div class="sw-head-l">
+              <p class="sw-eyebrow">Mobility</p>
+              <h3>Wheels</h3>
+              <p class="sw-summary">Urban mobility platform helping riders navigate cities through shared transportation, routing, and real-time ride experiences.</p>
+            </div>
+            <div class="sw-meta">
+              <div class="row"><span class="k">Role</span><span class="v">Product Designer</span></div>
+              <div class="row"><span class="k">Year</span><span class="v">2020</span></div>
+              <div class="row"><span class="k">Platform</span><span class="v">iOS · Android</span></div>
+            </div>
+          </div>
+          <div class="sw-body">
+            <p>I contributed to mobile product design for rider-facing flows, focusing on map-based interactions, trip status, and key ride actions. The work supported a fast-moving transportation experience where users needed quick, clear decisions while on the go.</p>
+            <div class="sw-contrib">
+              <span class="clabel">Key contributions</span>
+              <ul>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rider mobile experience</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Map and route-based interactions</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Trip status and ride controls</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mobile UI patterns for quick actions</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="sw-item">
+          <div class="sw-top">
+            <div class="sw-head-l">
+              <p class="sw-eyebrow">E-Commerce</p>
+              <h3>Perromart</h3>
+              <p class="sw-summary">Singapore-based pet commerce platform helping pet owners discover, purchase, and manage products through an online shopping experience.</p>
+            </div>
+            <div class="sw-meta">
+              <div class="row"><span class="k">Role</span><span class="v">Product Designer</span></div>
+              <div class="row"><span class="k">Year</span><span class="v">2020</span></div>
+              <div class="row"><span class="k">Platform</span><span class="v">Web · Mobile</span></div>
+            </div>
+          </div>
+          <div class="sw-body">
+            <p>I worked on e-commerce experience improvements across browsing, product discovery, and shopping flows. The work focused on helping pet owners find products more easily and move through a clearer purchase experience across web and mobile.</p>
+            <div class="sw-contrib">
+              <span class="clabel">Key contributions</span>
+              <ul>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Product discovery</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Shopping flow improvements</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>E-commerce UI patterns</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mobile and responsive layouts</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="sw-item">
+          <div class="sw-top">
+            <div class="sw-head-l">
+              <p class="sw-eyebrow">Mentorship Platform</p>
+              <h3>Fōkcus</h3>
+              <p class="sw-summary">Mentorship platform helping entrepreneurs connect with experienced professionals through guided matching and community-driven support.</p>
+            </div>
+            <div class="sw-meta">
+              <div class="row"><span class="k">Role</span><span class="v">Product Designer</span></div>
+              <div class="row"><span class="k">Year</span><span class="v">2018</span></div>
+              <div class="row"><span class="k">Platform</span><span class="v">Web</span></div>
+            </div>
+          </div>
+          <div class="sw-body">
+            <p>I designed early web experiences for a startup mentorship concept, focusing on explaining the service, creating simple entry points, and helping users understand how the platform could support business mentorship.</p>
+            <div class="sw-contrib">
+              <span class="clabel">Key contributions</span>
+              <ul>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Landing page experience</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Service explanation</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Early product structure</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Responsive web UI</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="sw-item">
+          <div class="sw-top">
+            <div class="sw-head-l">
+              <p class="sw-eyebrow">Transportation</p>
+              <h3>Hyperloop TT</h3>
+              <p class="sw-summary">Future transportation concept helping teams visualize routes, infrastructure, and operational data for next-generation transit systems.</p>
+            </div>
+            <div class="sw-meta">
+              <div class="row"><span class="k">Role</span><span class="v">Product Designer</span></div>
+              <div class="row"><span class="k">Year</span><span class="v">2018</span></div>
+              <div class="row"><span class="k">Platform</span><span class="v">Web · Desktop</span></div>
+            </div>
+          </div>
+          <div class="sw-body">
+            <p>I contributed to digital product concepts for Hyperloop TT, exploring how users could understand routes, infrastructure, and future transportation systems through a clearer interface experience.</p>
+            <div class="sw-contrib">
+              <span class="clabel">Key contributions</span>
+              <ul>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Concept exploration</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Route and infrastructure experience</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Data visualization direction</li>
+                <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Future mobility interface patterns</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cs-close">
+      <h2>Supporting work across different product stages</h2>
+      <p>These projects reflect my ability to move across different product contexts, from consumer mobility and e-commerce to early-stage platforms and future-facing transportation concepts.</p>
+      <p>While each engagement was smaller in scope, the work helped me build range across mobile, web, marketplace, and concept-driven product design.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/matrix.html" data-warp="HOME">View main case studies <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="../../portfolio.html#contact">Get in touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="foot-inner">
+      <div class="foot-copy">&copy; 2026 Pauline Shay &middot; Lead Product Designer</div>
+      <a class="foot-blue" href="../selected-product-work.html"><span class="pill"></span> Take the Blue Pill &mdash; see the classic version</a>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

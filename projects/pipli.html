@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pipli — Family Care Notes · Pauline Shay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="case-study.css" />
+<style>
+  :root { --accent: #6f8f5e; }
+
+  /* Tagline under the title */
+  .cs-tagline { margin: 16px 0 0; font-size: clamp(17px, 2vw, 21px); font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+
+  /* Status value with a concept dot */
+  .cs-meta .v .st { display: inline-flex; align-items: center; gap: 8px; }
+  .cs-meta .v .st .pd { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+
+  /* Three-up cards reuse .goal styling */
+  .mode-grid { margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 820px) { .mode-grid { grid-template-columns: 1fr; } }
+
+  /* Status callout strip */
+  .status-strip {
+    margin: 28px 0 0; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 18px 22px; border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--bg));
+  }
+  .status-strip .tag {
+    display: inline-flex; align-items: center; gap: 8px; flex: none;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); white-space: nowrap;
+    padding: 7px 13px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .status-strip .tag .pd { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s var(--ease) infinite; }
+  .status-strip p { margin: 0; font-size: clamp(15px, 1.7vw, 16.5px); font-weight: 500; color: var(--text); line-height: 1.5; }
+</style>
+</head>
+<body data-screen-label="Pipli — Family care notes case study">
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a class="wordmark" href="../portfolio.html"><span class="dot"></span>Pauline Shay</a>
+      <div class="nav-links">
+        <a class="nav-extra" href="../portfolio.html#work">Work</a>
+        <a class="nav-extra" href="../portfolio.html#about">About</a>
+        <a class="nav-extra" href="../portfolio.html#contact">Contact</a>
+        <a class="matrix" href="../index.html">Enter the Matrix ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="backbar">
+      <a class="back" href="../portfolio.html#work"><span class="arr">←</span> Back to all work</a>
+    </div>
+
+    <section class="cs-hero">
+      <img class="cs-hero-img" src="../assets/work-pipli.png?v=2" alt="Pipli family care notes app — onboarding, home, and child notes screens" />
+    </section>
+
+    <section class="cs-head">
+      <div>
+        <p class="cs-eyebrow">Family Care</p>
+        <h1 class="cs-title">Pipli</h1>
+        <p class="cs-summary">A mobile app concept for parents and caregivers to log medicine, incidents, naps, food, potty notes, and daily care updates in one simple timeline. Designed to make handoffs between parents, nannies, grandparents, and daycare easier, clearer, and less stressful.</p>
+      </div>
+      <div class="cs-meta">
+        <div class="row"><span class="k">Role</span><span class="v">Product Designer, Product Strategy, AI-Assisted Builder</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2026</span></div>
+        <div class="row"><span class="k">Platform</span><span class="v">iOS concept / mobile app</span></div>
+        <div class="row"><span class="k">Tools</span><span class="v">Figma, Claude, Cursor, React Native, Expo</span></div>
+        <div class="row"><span class="k">Status</span><span class="v"><span class="st"><span class="pd"></span>Concept in progress</span></span></div>
+      </div>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <section class="cs-intro">
+      <p class="cs-kicker">Overview</p>
+      <p class="lead">A calm place to write down the small things, so the next person caring for a child always knows what happened.</p>
+      <p>Caring for a child is rarely a solo job. Parents, partners, nannies, grandparents, and daycare all share the load, but the details that matter most often live in scattered texts, sticky notes, and memory. Pipli pulls medicine doses, symptoms, temperatures, naps, food, and daily notes into one shared timeline.</p>
+      <p>The goal is not another tracking chore. It's a low-effort, low-stress way to capture a moment and hand off care cleanly, especially when a child is sick or seeing a doctor.</p>
+    </section>
+
+    <!-- ===== The problem ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">The problem</p>
+      <p class="cs-note">Handoffs between caregivers are <strong>fragmented and stressful</strong>, and the details that matter get lost between people.</p>
+      <p class="cs-summary" style="margin-top:18px;max-width:780px;">When a child is passed between a parent, a nanny, and a grandparent in a single day, important context travels poorly. When did they last take medicine? How high was the fever? Did they nap, eat, and seem themselves? The information exists, but it's spread across people and apps, and it's hard to trust under pressure.</p>
+    </section>
+
+    <!-- ===== What I designed ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">What I designed</p>
+      <p class="cs-summary" style="max-width:680px;">Pipli is organized around a few calm, focused experiences that share one consistent shell.</p>
+      <div class="mode-grid">
+        <article class="goal">
+          <span class="num">01</span>
+          <h3>Quick capture</h3>
+          <p>One-tap entries for logging a symptom, medicine, or temperature. Adding a note takes seconds, so it actually gets done in the moment.</p>
+        </article>
+        <article class="goal">
+          <span class="num">02</span>
+          <h3>Shared timeline</h3>
+          <p>A single, readable feed of recent notes per child, so anyone caring for them can catch up at a glance instead of asking around.</p>
+        </article>
+        <article class="goal">
+          <span class="num">03</span>
+          <h3>Visit prep</h3>
+          <p>Notes roll up into doctor-ready summaries, turning a week of small observations into clear questions and history for an appointment.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== My role ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">My role</p>
+      <p class="cs-summary" style="max-width:680px;">I led product strategy, UX, visual design, and the AI-assisted build for the concept.</p>
+      <div class="design-list">
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Framing the problem around caregiver handoffs</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Designing a calm, low-effort visual language</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Defining the note types and timeline model</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Designing onboarding and first-run setup</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Designing multi-child switching and profiles</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Building the concept with an AI-assisted workflow</span>
+      </div>
+    </section>
+
+    <!-- ===== Key decisions ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Key product decisions</p>
+      <div class="flows" style="margin-top:30px;">
+        <div class="flow">
+          <span class="step">1</span>
+          <div class="ftext">
+            <h3>Make capture effortless</h3>
+            <p>The home screen leads with four large actions, Log symptom, Add medicine, Temperature, and Visit prep, so the most common notes are always one tap away. The faster capture feels, the more reliably the timeline reflects reality.</p>
+          </div>
+        </div>
+        <div class="flow">
+          <span class="step">2</span>
+          <div class="ftext">
+            <h3>Keep it calm, not clinical</h3>
+            <p>Health apps tend to feel sterile and alarming. Pipli uses warm, soft tones, friendly type, and gentle empty states like "All quiet so far" so logging a sick day feels reassuring rather than stressful.</p>
+          </div>
+        </div>
+        <div class="flow">
+          <span class="step">3</span>
+          <div class="ftext">
+            <h3>Design for more than one child, and more than one caregiver</h3>
+            <p>Each child has their own profile and timeline, switchable from the top of the home screen. The structure is built so notes can be shared cleanly with anyone helping out, which is the core of the handoff idea.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Current status ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Current status</p>
+      <div class="status-strip">
+        <span class="tag"><span class="pd"></span>Concept in progress</span>
+        <p>The core experience, onboarding, home, quick capture, and timeline, is designed and prototyped. Care and Party sections are scaffolded for a later phase.</p>
+      </div>
+      <p class="cs-summary" style="margin-top:22px;max-width:780px;">Next is pressure-testing the handoff flow with real caregivers, expanding the Sick Log and Visit prep summaries, and exploring how sharing works between people who care for the same child.</p>
+    </section>
+
+    <!-- ===== Close ===== -->
+    <section class="cs-close">
+      <h2>A calmer way to share what matters</h2>
+      <p>Pipli is where I bring product strategy, UX, and hands-on building together around a real family problem. Want a closer look at the flows behind it?</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="../portfolio.html#contact">Get in touch <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="../portfolio.html#work">View other work</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="foot-inner">
+      <div class="foot-copy">© 2026 Pauline Shay · Lead Product Designer</div>
+      <a class="foot-red" href="../index.html"><span class="pill"></span> Enter the Matrix — see the creative version</a>
+    </div>
+  </footer>
+
+</body>
+</html>

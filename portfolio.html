@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-font="grotesk" data-cards="flat">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pauline McNaughton | Product Designer</title>
+<meta name="description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:title" content="Pauline McNaughton | Product Designer" />
+<meta property="og:description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:url" content="https://hipauline.com/portfolio" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pauline McNaughton | Product Designer" />
+<meta name="twitter:description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<link rel="canonical" href="https://hipauline.com/portfolio" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     BLUE PILL — the professional, recruiter-facing portfolio.
+     Calm, white, typographic. The opposite of the Matrix home.
+     ============================================================ */
+  :root {
+    --accent: #2a6fdb;
+    --bg: #ffffff;
+    --bg-subtle: #fafafa;
+    --surface: #ffffff;
+    --text: #0d0e11;
+    --text-2: #565a61;
+    --text-3: #8b9098;
+    --border: #ececef;
+    --border-strong: #e0e1e5;
+    --radius: 16px;
+    --maxw: 1140px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html[data-theme="dark"] {
+    --bg: #0a0b0d;
+    --bg-subtle: #0f1013;
+    --surface: #131519;
+    --text: #f4f5f7;
+    --text-2: #a4aab2;
+    --text-3: #6c727b;
+    --border: #23262c;
+    --border-strong: #2c3036;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Schibsted Grotesk", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    letter-spacing: -0.011em;
+    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  ::selection { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* Serif-heading tweak */
+  html[data-font="serif"] .display,
+  html[data-font="serif"] .sec-title,
+  html[data-font="serif"] .hero-name {
+    font-family: "Newsreader", Georgia, serif;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+
+  /* ---------- Eyebrow label ---------- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .eyebrow::before {
+    content: ""; width: 18px; height: 1.5px; background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s var(--ease), background 0.4s var(--ease);
+  }
+  nav.top.scrolled { border-bottom-color: var(--border); }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 17px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .wordmark {
+    font-size: 16px; font-weight: 700; letter-spacing: -0.02em;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .wordmark .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links a {
+    font-size: 14.5px; font-weight: 500; color: var(--text-2);
+    padding: 8px 14px; border-radius: 9px;
+    transition: color 0.18s var(--ease), background 0.18s var(--ease);
+  }
+  .nav-links a:hover { color: var(--text); background: color-mix(in srgb, var(--text) 5%, transparent); }
+  .nav-links a.matrix {
+    color: #34e87a; font-weight: 600;
+    margin-left: 4px;
+    text-shadow: 0 0 6px rgba(52,232,122,0.5);
+    animation: matrixGlitch 3.6s linear infinite;
+  }
+  .nav-links a.matrix:hover { color: #5dff96; background: color-mix(in srgb, #34e87a 14%, transparent); }
+  @keyframes matrixGlitch {
+    0%, 41%, 47%, 87%, 93%, 100% { text-shadow: 0 0 6px rgba(52,232,122,0.5); transform: translate(0,0) skewX(0); }
+    43% { text-shadow: -2px 0 rgba(93,255,150,0.75), 2px 0 rgba(20,150,80,0.6), 0 0 7px rgba(52,232,122,0.55); transform: translate(1px,-1px) skewX(-8deg); }
+    45% { text-shadow: 2px 0 rgba(93,255,150,0.75), -2px 0 rgba(20,150,80,0.6), 0 0 7px rgba(52,232,122,0.55); transform: translate(-1px,1px) skewX(4deg); }
+    89% { text-shadow: -2px 0 rgba(93,255,150,0.75), 2px 0 rgba(20,150,80,0.5); transform: translate(-1px,0) skewX(6deg); }
+    91% { text-shadow: 2px 0 rgba(93,255,150,0.75), -2px 0 rgba(20,150,80,0.6), 0 0 7px rgba(52,232,122,0.55); transform: translate(1px,0) skewX(-3deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links a.matrix { animation: none; }
+  }
+  .nav-toggle { display: none; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero { padding: clamp(56px, 9vh, 104px) 0 clamp(64px, 10vh, 116px); }
+  .hero-grid {
+    display: grid; grid-template-columns: 360px 1fr; gap: clamp(40px, 6vw, 84px);
+    align-items: center;
+  }
+  .portrait-wrap { position: relative; }
+  img.portrait {
+    width: 100%; aspect-ratio: 4 / 5; height: auto;
+    object-fit: cover; display: block;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--bg-subtle);
+  }
+  .portrait-badge {
+    position: absolute; left: 18px; bottom: 18px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 13px; border-radius: 999px;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    font-size: 12.5px; font-weight: 600; color: var(--text);
+  }
+  .portrait-badge .live {
+    width: 7px; height: 7px; border-radius: 50%; background: #18a957;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #18a957 22%, transparent);
+  }
+  .hero-name {
+    margin: 0; font-size: clamp(28px, 5vw, 36px); line-height: 1.05;
+    font-weight: 700; letter-spacing: -0.02em;
+  }
+  .hero-role {
+    margin: 18px 0 0; font-size: clamp(17px, 2.1vw, 21px);
+    font-weight: 600; color: var(--accent);
+  }
+  .hero-lede {
+    margin: 22px 0 0; max-width: 540px;
+    font-size: clamp(15.5px, 1.7vw, 17.5px); line-height: 1.62;
+    color: var(--text-2); text-wrap: pretty;
+  }
+  .hero-lede.small { margin-top: 14px; font-size: 15.5px; color: var(--text-3); }
+  .hero-cta { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+    padding: 13px 22px; border-radius: 11px;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform 0.18s var(--ease), background 0.18s var(--ease),
+                border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+  }
+  .btn .arr { transition: transform 0.2s var(--ease); }
+  .btn:hover .arr { transform: translateX(3px); }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.12), 0 8px 24px color-mix(in srgb, var(--accent) 26%, transparent);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(16,24,40,0.14), 0 12px 30px color-mix(in srgb, var(--accent) 34%, transparent); }
+  .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+  .btn-ghost:hover { transform: translateY(-1px); border-color: var(--text-3); }
+
+  /* ============================================================
+     SECTION SHELL
+     ============================================================ */
+  section.block { padding: clamp(72px, 11vh, 132px) 0; border-top: 1px solid var(--border); }
+  .sec-head { max-width: 720px; margin-bottom: clamp(40px, 6vh, 64px); }
+  .sec-title {
+    margin: 16px 0 0; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.04;
+    font-weight: 700; letter-spacing: -0.025em;
+  }
+  .sec-sub { margin: 16px 0 0; font-size: clamp(15.5px, 1.7vw, 17.5px); color: var(--text-2); line-height: 1.6; white-space: nowrap; max-width: none; }
+  @media (max-width: 820px) { .sec-sub { white-space: normal; text-wrap: pretty; } }
+  .sec-note { margin: 18px 0 0; display: flex; align-items: center; gap: 8px; font-size: 13.5px; line-height: 1.55; color: var(--text-3); max-width: none; white-space: nowrap; }
+  .sec-note svg { flex: none; width: 14px; height: 14px; opacity: 0.7; }
+  @media (max-width: 820px) { .sec-note { align-items: flex-start; white-space: normal; text-wrap: pretty; max-width: 600px; } .sec-note svg { margin-top: 2px; } }
+
+  /* ============================================================
+     FEATURED WORK
+     ============================================================ */
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(22px, 3vw, 40px) clamp(22px, 2.6vw, 36px); }
+  .work-card {
+    display: flex; flex-direction: column;
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.28s var(--ease);
+  }
+  html[data-cards="bordered"] .work-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+  }
+  html[data-cards="bordered"] .work-card .card-body { padding: 22px 22px 26px; }
+  html[data-cards="bordered"] .work-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: 0 18px 44px rgba(16,24,40,0.10);
+  }
+  html[data-cards="flat"] .work-card:hover { transform: translateY(-4px); }
+  .work-card image-slot {
+    width: 100%; aspect-ratio: 16 / 10; height: auto;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+  }
+  html[data-cards="bordered"] .work-card image-slot { border: none; border-bottom: 1px solid var(--border); border-radius: 0; }
+  /* Keynote-style hero image (replaces the flat screenshot slot) */
+  .work-card .work-hero {
+    width: 100%; aspect-ratio: 16 / 10; height: auto; object-fit: cover;
+    display: block; border-radius: var(--radius); border: 1px solid var(--border);
+    background: #0a0d12;
+  }
+  html[data-cards="bordered"] .work-card .work-hero { border: none; border-bottom: 1px solid var(--border); border-radius: 0; }
+  .work-hero-frame { position: relative; }
+  .work-hero-frame .work-hero { display: block; }
+  .work-wip { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+  .work-wip span {
+    font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: clamp(16px, 2.4vw, 30px); color: #fff;
+    padding: 0.34em 0.7em; transform: rotate(-12deg);
+    background: rgba(20,184,166,0.92);
+    border: 2px solid rgba(255,255,255,0.85); border-radius: 9px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.32); text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    white-space: nowrap;
+  }
+  .card-body { padding: 20px 0 6px; }
+  .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .card-title { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+  .card-industry {
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-3); white-space: nowrap;
+  }
+  .card-summary { margin: 9px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--text-2); text-wrap: pretty; }
+  .card-more {
+    margin-top: 14px; display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13.5px; font-weight: 600; color: var(--accent);
+    opacity: 0; transform: translateY(4px);
+    transition: opacity 0.24s var(--ease), transform 0.24s var(--ease);
+  }
+  .work-card:hover .card-more, .work-card:focus-visible .card-more { opacity: 1; transform: none; }
+  .card-more .arr { transition: transform 0.2s var(--ease); }
+  .work-card:hover .card-more .arr { transform: translateX(3px); }
+
+  /* ---------- Combined "Selected Product Work" card (full-width) ---------- */
+  .work-card.additional { grid-column: 1 / -1; }
+  .work-card.additional .add-hero { aspect-ratio: 2000 / 820; }
+  .add-sub {
+    margin: 8px 0 0; font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+    color: var(--text-3);
+  }
+  .add-summary { max-width: none; }
+
+  /* ============================================================
+     TRUSTED BY
+     ============================================================ */
+  .trusted { padding: clamp(48px, 7vh, 76px) 0; border-top: 1px solid var(--border); }
+  .trusted-label { font-size: 12.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); text-align: center; }
+  .trusted-row {
+    margin-top: 28px; display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: center; gap: 14px clamp(26px, 4vw, 52px);
+  }
+  .trusted-row span {
+    font-size: clamp(16px, 1.9vw, 21px); font-weight: 600; letter-spacing: -0.01em;
+    color: var(--text-3); opacity: 0.78;
+    transition: color 0.2s var(--ease), opacity 0.2s var(--ease);
+  }
+  .trusted-row span:hover { color: var(--text); opacity: 1; }
+  .trusted-row .trow-break { flex-basis: 100%; height: 0; padding: 0; margin: 0; }
+  @media (max-width: 640px) { .trusted-row .trow-break { display: none; } }
+
+  /* ============================================================
+     ABOUT
+     ============================================================ */
+  .about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
+  .about-grid + .about-grid { margin-top: clamp(52px, 8vh, 96px); padding-top: clamp(52px, 8vh, 96px); border-top: 1px solid var(--border); }
+  .about-body p { margin: 0 0 1.3em; font-size: clamp(16px, 1.8vw, 18.5px); line-height: 1.72; color: var(--text-2); text-wrap: pretty; }
+  .about-body em { font-style: italic; color: var(--text); }
+  .about-figure { margin: 1.8em 0 0; }
+  .about-figure img {
+    width: 210px; max-width: 70%; height: auto; display: block;
+  }
+
+  /* --- Animated gaming illustration --- */
+  .gaming-figure { position: relative; width: 210px; max-width: 70%; }
+  .gaming-figure img { width: 100%; max-width: 100%; }
+  .gaming-figure .layer { position: absolute; pointer-events: none; }
+
+  /* Hands + controller — gentle "button pressing" wiggle */
+  .gaming-figure .arms {
+    left: 43.06%; top: 58.85%; width: 16.75%; height: 13.96%;
+    background: url("assets/gaming-arms.png") center/100% 100% no-repeat;
+    transform-origin: 12% 40%;
+    animation: gameHands 0.85s ease-in-out infinite alternate;
+    image-rendering: pixelated;
+  }
+  @keyframes gameHands {
+    0%   { transform: rotate(0deg)    translateY(0); }
+    50%  { transform: rotate(0.6deg)  translateY(0.5px); }
+    100% { transform: rotate(-0.9deg) translateY(-1.2px); }
+  }
+
+  /* TV screen — live CRT: scanlines, flicker, glow */
+  .gaming-figure .screen {
+    left: 35.49%; top: 27.51%; width: 43.46%; height: 26.71%;
+    overflow: hidden;
+  }
+  .gaming-figure .screen .scan {
+    position: absolute; inset: -50%;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(0,0,0,0.16) 3px,
+      rgba(0,0,0,0.16) 4px
+    );
+    animation: gameScan 5.5s linear infinite;
+  }
+  @keyframes gameScan { from { transform: translateY(0); } to { transform: translateY(8px); } }
+  .gaming-figure .screen .glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(120% 90% at 60% 45%, rgba(120,200,255,0.22), rgba(120,200,255,0) 60%);
+    mix-blend-mode: screen;
+    animation: gameFlicker 3.2s ease-in-out infinite;
+  }
+  @keyframes gameFlicker {
+    0%, 100% { opacity: 0.55; }
+    8%  { opacity: 0.85; }
+    10% { opacity: 0.4; }
+    52% { opacity: 0.8; }
+    54% { opacity: 0.5; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gaming-figure .arms, .gaming-figure .scan, .gaming-figure .glow { animation: none; }
+  }
+
+  /* Drawing hand on the desk illustration (About) */
+  .desk-figure { position: relative; width: 210px; max-width: 70%; }
+  .desk-figure img { width: 100%; max-width: 100%; }
+  .desk-figure .draw-hand {
+    position: absolute; pointer-events: none;
+    left: 42.26%; top: 50.64%; width: 10.77%; height: 9.17%;
+    background: url("assets/desk-hand.png") center/100% 100% no-repeat;
+    transform-origin: 15% 85%;
+    image-rendering: pixelated;
+    animation: drawHand 1.7s ease-in-out infinite;
+  }
+  @keyframes drawHand {
+    0%   { transform: rotate(0deg)    translate(0,0); }
+    25%  { transform: rotate(-1.3deg) translate(-1px, 0.6px); }
+    50%  { transform: rotate(0.5deg)  translate(0.7px, -0.4px); }
+    75%  { transform: rotate(-0.9deg) translate(-0.6px, 0.3px); }
+    100% { transform: rotate(0deg)    translate(0,0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .desk-figure .draw-hand { animation: none; }
+  }
+  .about-body p:last-child { margin-bottom: 0; }
+  .about-body strong { color: var(--text); font-weight: 600; }
+  .about-body .lead { font-size: clamp(19px, 2.1vw, 23px); font-weight: 600; color: var(--text); letter-spacing: -0.015em; margin-bottom: 1em; }
+  .about-body .emph { font-size: clamp(17px, 1.95vw, 20px); font-weight: 600; color: var(--text); letter-spacing: -0.012em; margin: 1.9em 0 1em; }
+  .about-body .proj { color: var(--accent); font-weight: 600; }
+  .about-body .note {
+    margin-top: 2em; display: inline-flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 500; color: var(--text-2);
+    padding: 10px 16px; border: 1px solid var(--border-strong); border-radius: 999px;
+  }
+  .about-body .note .dot { width: 7px; height: 7px; border-radius: 50%; background: #18a957; box-shadow: 0 0 0 3px color-mix(in srgb, #18a957 22%, transparent); flex: none; }
+
+  /* ============================================================
+     SKILLS
+     ============================================================ */
+  .skills-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-tags span {
+    font-size: 14.5px; font-weight: 500; color: var(--text); white-space: nowrap;
+    padding: 9px 15px; border-radius: 999px;
+    border: 1px solid var(--border-strong); background: var(--surface);
+    transition: border-color 0.18s var(--ease), color 0.18s var(--ease);
+  }
+  .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  .contact { padding: clamp(84px, 13vh, 156px) 0; border-top: 1px solid var(--border); }
+  .contact-title {
+    margin: 18px 0 0; font-size: clamp(34px, 5.4vw, 66px); line-height: 1.0;
+    font-weight: 700; letter-spacing: -0.03em; max-width: 12ch;
+  }
+  html[data-font="serif"] .contact-title { font-family: "Newsreader", Georgia, serif; font-weight: 500; }
+  .contact-links { margin-top: clamp(36px, 5vh, 52px); display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); gap: 0; max-width: 700px; }
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 4px; border-top: 1px solid var(--border);
+    font-size: 18px; font-weight: 600; letter-spacing: -0.01em;
+    transition: color 0.18s var(--ease), padding 0.2s var(--ease);
+  }
+  .contact-link:hover { color: var(--accent); padding-left: 10px; }
+  .contact-link .meta { font-size: 13.5px; font-weight: 500; color: var(--text-3); }
+  .contact-link .arr { color: var(--text-3); transition: transform 0.2s var(--ease), color 0.18s var(--ease); }
+  .contact-link:hover .arr { transform: translate(3px, -3px); color: var(--accent); }
+  .contact-link .lock { display: inline-flex; margin-left: 8px; color: var(--text-3); }
+  .contact-link .lock svg { width: 14px; height: 14px; }
+  .contact-link:hover .lock { color: var(--accent); }
+  .contact-link .muted { color: var(--text-3); font-weight: 500; margin-left: 2px; }
+  .contact-link > .arr { margin-left: auto; }
+
+  /* ---------- Resume password gate ---------- */
+  .gate-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    background: color-mix(in srgb, var(--text) 38%, transparent);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity 0.24s var(--ease);
+  }
+  .gate-overlay.open { opacity: 1; pointer-events: auto; }
+  .gate-card {
+    width: 100%; max-width: 392px; background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 18px;
+    padding: 28px 26px 24px; box-shadow: 0 24px 70px rgba(16,24,40,0.28);
+    transform: translateY(10px) scale(0.985); transition: transform 0.26s var(--ease);
+  }
+  .gate-overlay.open .gate-card { transform: none; }
+  .gate-card.shake { animation: gate-shake 0.4s var(--ease); }
+  @keyframes gate-shake { 0%,100%{transform:none} 20%{transform:translateX(-7px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(3px)} }
+  .gate-icon {
+    width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); margin-bottom: 16px;
+  }
+  .gate-icon svg { width: 20px; height: 20px; }
+  .gate-title { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+  .gate-sub { margin: 7px 0 0; font-size: 14px; color: var(--text-2); line-height: 1.5; }
+  .gate-form { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .gate-input {
+    width: 100%; padding: 12px 14px; font-size: 15px; font-family: inherit; color: var(--text);
+    background: var(--bg-subtle); border: 1px solid var(--border-strong); border-radius: 11px;
+    outline: none; transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+  }
+  .gate-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+  .gate-input.err { border-color: #e01228; box-shadow: 0 0 0 3px color-mix(in srgb, #e01228 14%, transparent); }
+  .gate-err { font-size: 13px; color: #e01228; min-height: 16px; margin: -2px 0 0; }
+  .gate-actions { display: flex; gap: 9px; margin-top: 4px; }
+  .gate-actions .btn { flex: 1; justify-content: center; padding: 12px 18px; }
+  .gate-x {
+    position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;
+    background: transparent; color: var(--text-3); font-size: 18px; line-height: 1;
+    transition: background 0.18s var(--ease), color 0.18s var(--ease);
+  }
+  .gate-x:hover { background: color-mix(in srgb, var(--text) 6%, transparent); color: var(--text); }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer.site {
+    border-top: 1px solid var(--border); padding: 40px 0 56px;
+    background: var(--bg-subtle);
+  }
+  .foot-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .foot-copy { font-size: 13.5px; color: var(--text-3); }
+  .foot-red {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 13.5px; font-weight: 600; color: var(--text-2);
+    padding: 9px 15px; border-radius: 999px; border: 1px solid var(--border-strong);
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .foot-red .pill { width: 8px; height: 8px; border-radius: 50%; background: #34e87a; box-shadow: 0 0 10px rgba(52,232,122,0.7); }
+  .foot-red:hover { color: #5dff96; border-color: #34e87a; background: color-mix(in srgb, #34e87a 8%, transparent); }
+
+  /* ---------- Reveal-on-scroll (visible by default; only below-fold starts hidden) ---------- */
+  .reveal { transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.pre { opacity: 0; transform: translateY(18px); }
+  @media (prefers-reduced-motion: reduce) { .reveal, .reveal.pre { opacity: 1; transform: none; transition: none; } }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .portrait-wrap { max-width: 300px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .about-grid, .skills-grid { grid-template-columns: 1fr; gap: 28px; }
+    .contact-links { grid-template-columns: 1fr; }
+    .nav-links a:not(.matrix):not(.is-cta) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="top" id="topnav">
+    <div class="nav-inner">
+      <a class="wordmark" href="#top" aria-label="Back to top">Home</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#" data-locked data-enc="assets/resume.enc" data-dl="Pauline-Shay-CV.pdf" data-label="Resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <a class="matrix" href="matrix.html" data-warp="HOME" aria-label="Take the red pill — switch to the alternative version of this portfolio">Enter the Matrix ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+  <div class="wrap">
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="portrait-wrap reveal">
+          <img class="portrait" id="bp-portrait" src="assets/pauline-hero.png" alt="Pauline McNaughton" />
+          <div class="portrait-badge"><span class="live"></span> Open to new roles</div>
+        </div>
+        <div class="hero-text">
+          <p class="eyebrow reveal">Lead Product Designer</p>
+          <h1 class="hero-name display reveal">Pauline Shay</h1>
+          <p class="hero-lede reveal">Designing products across AI, healthcare, education, enterprise SaaS, and consumer experiences.</p>
+          <p class="hero-lede small reveal">For the past 8+ years, I've helped startups and enterprise teams turn complex problems into intuitive products across healthcare, education, enterprise SaaS, AI, and consumer experiences. Recently, I've been exploring how AI-assisted workflows can move ideas beyond prototypes and into working software.</p>
+          <div class="hero-cta reveal">
+            <a class="btn btn-primary is-cta" href="#work">View Work <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="#" data-locked data-enc="assets/resume.enc" data-dl="Pauline-Shay-CV.pdf" data-label="Resume">Resume</a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+    <!-- ===================== FEATURED WORK ===================== -->
+    <section class="block" id="work">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2 class="sec-title">Featured product work</h2>
+          <p class="sec-sub">Selected projects across healthcare, education, enterprise SaaS, consumer products, and AI.</p>
+          <p class="sec-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>Some projects contain modified visuals or generalized descriptions due to client confidentiality and NDA requirements.</span></p>
+        </div>
+
+        <div class="work-grid">
+          <a class="work-card reveal" href="projects/wildkind.html">
+            <img class="work-hero" src="assets/work-wildkind.png" alt="WildKind — Consumer · AI keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">WildKind</span><span class="card-industry">Consumer · AI</span></div>
+              <p class="card-summary">AI-powered wildlife discovery platform helping people identify, collect, and learn about animals, plants, and nature through camera-based exploration.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/ankrd.html">
+            <img class="work-hero" src="assets/work-ankrd.png" alt="ANKrD — Fintech keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">ANKrD</span><span class="card-industry">Behavioral Finance</span></div>
+              <p class="card-summary">Behavioral finance app helping people pause before impulse purchases, understand spending triggers, and build healthier shopping habits.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/cengage.html">
+            <img class="work-hero" src="assets/work-cengage.png?v=7" alt="Cengage — Education · AI keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Cengage</span><span class="card-industry">Education · AI</span></div>
+              <p class="card-summary">AI-powered education platform helping students develop career‑readiness skills through assessments, simulations, and personalized learning experiences.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/cisco.html">
+            <img class="work-hero" src="assets/work-cisco.png" alt="Cisco Meraki — Enterprise Network Management keynote hero with network topology and live fabric health stats" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Cisco Meraki</span><span class="card-industry">Enterprise SaaS</span></div>
+              <p class="card-summary">Cloud-based infrastructure platform helping IT teams monitor, manage, and troubleshoot enterprise networks from a centralized dashboard.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/vca.html">
+            <img class="work-hero" src="assets/work-vca.png?v=7" alt="Mars VCA — Healthcare keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Mars VCA</span><span class="card-industry">Healthcare</span></div>
+              <p class="card-summary">Veterinary operations platform supporting clinics, doctors, and staff across the VCA hospital network.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/enora.html">
+            <div class="work-hero-frame">
+              <img class="work-hero" src="assets/work-enora.png" alt="Enora — Female Wellness keynote hero" loading="lazy" />
+              <div class="work-wip" aria-label="Work in progress"><span>Work in progress</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Enora</span><span class="card-industry">Female Wellness</span></div>
+              <p class="card-summary">Enora helps new mothers reflect on their emotions, track mood patterns, and feel supported through gentle journaling, guided check-ins, and personalized wellness prompts.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/games.html">
+            <img class="work-hero" src="assets/work-games.png?v=5" alt="Little Sort — Cozy Puzzle Game keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Little Sort</span><span class="card-industry">Game</span></div>
+              <p class="card-summary">Small game experiments exploring playful interactions, logic-based challenges, and cozy mobile experiences built with AI-assisted development workflows.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/pipli.html">
+            <div class="work-hero-frame">
+              <img class="work-hero" src="assets/work-pipli.png" alt="Pipli keynote hero" loading="lazy" />
+              <div class="work-wip" aria-label="Work in progress"><span>Work in progress</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Pipli</span><span class="card-industry">Family Care</span></div>
+              <p class="card-summary">A family care notes app that makes parent and caregiver handoffs easier, bringing medicine logs, incident notes, food, naps, potty updates, and daily summaries into one calm mobile experience.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/pete-health.html">
+            <img class="work-hero" src="assets/work-pete.png" alt="PeteHealth — Physical Therapy keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">PeteHealth</span><span class="card-industry">Healthcare</span></div>
+              <p class="card-summary">Digital healthcare platform helping patients connect with physical therapists through scheduling, treatment planning, and remote care experiences.</p>
+            </div>
+          </a>
+
+          <a class="work-card reveal" href="projects/wag.html">
+            <img class="work-hero" src="assets/work-wag.png" alt="Wag — Consumer marketplace keynote hero" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Wag</span><span class="card-industry">Consumer</span></div>
+              <p class="card-summary">Pet care marketplace helping pet owners connect with trusted caregivers for walking, boarding, training, and everyday pet services.</p>
+            </div>
+          </a>
+
+          <a class="work-card additional reveal" href="projects/selected-product-work.html">
+            <img class="work-hero add-hero" src="assets/work-additional.png?v=2" alt="Selected Product Work — Wheels, Perromart, Fōkcus, Hyperloop TT" loading="lazy" />
+            <div class="card-body">
+              <div class="card-top"><span class="card-title">Selected Product Work</span></div>
+              <p class="add-sub">Wheels · Perromart · Fōkcus · Hyperloop TT</p>
+              <p class="card-summary add-summary">A collection of smaller product design projects across mobility, e-commerce, mentorship, and future transportation.</p>
+              <span class="card-more">View selected work <span class="arr">→</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TRUSTED BY ===================== -->
+    <section class="trusted">
+      <div class="wrap reveal">
+        <p class="trusted-label">Trusted by teams at</p>
+        <div class="trusted-row">
+          <span>Cisco</span>
+          <span>VCA</span>
+          <span>Wag</span>
+          <span>Wheels</span>
+          <span>PeteHealth</span>
+          <span>Cengage</span>
+          <span class="trow-break" aria-hidden="true"></span>
+          <span>Perromart Singapore</span>
+          <span>Fokcus</span>
+          <span>Hyperloop TT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="block" id="about">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="sec-head reveal" style="margin-bottom:0">
+            <p class="eyebrow">About</p>
+            <h2 class="sec-title">About Pauline</h2>
+            <figure class="about-figure desk-figure">
+              <img src="assets/pauline-desk.png" alt="Pixel-art illustration of Pauline at her desk designing on a computer, with sticky notes reading Design, Solve, Impact" loading="lazy" />
+              <div class="draw-hand"></div>
+            </figure>
+          </div>
+          <div class="about-body reveal">
+            <p class="lead">My career started with a simple belief: the best products make complicated things feel effortless.</p>
+            <p>Since 2018, I've worked with startups and enterprise teams to turn complex systems, workflows, and ideas into experiences people actually enjoy using. Over the years, I've designed for veterinary hospitals, educational technology platforms, healthcare products, cloud networking tools, consumer marketplaces, and enterprise software used by thousands of people every day.</p>
+            <p class="emph">Recently, AI changed how I think about building products.</p>
+            <p>Instead of stopping at prototypes and design files, I've been exploring how AI-assisted workflows can help move ideas all the way to working software. Using tools like Claude, Cursor, Vercel, v0, Replit, OpenAI, Codex, Supabase, React Native, and Node/Next.js, I've been designing and building independent products including <span class="proj">WildKind</span>, <span class="proj">Little Sort</span>, <span class="proj">Pipli</span> and <span class="proj">ANKrD</span>.</p>
+            <p>Whether I'm working on enterprise software or an independent product built from scratch, the goal is always the same: solve real problems and create experiences people genuinely enjoy using.</p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="sec-head reveal" style="margin-bottom:0">
+            <p class="eyebrow">Personal</p>
+            <h2 class="sec-title">Who I Am</h2>
+            <figure class="about-figure gaming-figure">
+              <img src="assets/pauline-gaming.png" alt="Pixel-art illustration of Pauline gaming on the floor with boba, plants, and a cozy setup" loading="lazy" />
+              <div class="layer screen"><div class="scan"></div><div class="glow"></div></div>
+              <div class="layer arms"></div>
+            </figure>
+          </div>
+          <div class="about-body reveal">
+            <p class="lead">Outside of work, I'm a mom of two, a lifelong gamer, and someone who is endlessly curious about how things work.</p>
+            <p>I was born in Hong Kong and moved to the United States as a child. That experience shaped how I see the world and taught me to adapt quickly, embrace change, and appreciate different perspectives.</p>
+            <p>When I'm away from my computer, you'll usually find me hiking with my family, planning our next trip, watching movies, exploring new technology, or getting lost in games like <em>Final Fantasy</em>, <em>Ghost of Tsushima</em>, <em>Hogwarts Legacy</em>, and <em>Animal Crossing</em>.</p>
+            <p>Whether I'm designing products, building side projects, or raising my kids, I'm driven by the same thing: <strong>curiosity, creativity, and a desire to make things a little better than I found them</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="block" id="skills">
+      <div class="wrap">
+        <div class="skills-grid">
+          <div class="sec-head reveal" style="margin-bottom:0">
+            <p class="eyebrow">Expertise</p>
+            <h2 class="sec-title">Capabilities</h2>
+          </div>
+          <div class="skill-tags reveal">
+            <span>Zero-to-One Product Design</span>
+            <span>Enterprise Platforms</span>
+            <span>AI-Powered Experiences</span>
+            <span>Mobile Applications</span>
+            <span>Design Systems</span>
+            <span>Product Strategy</span>
+            <span>AI-Assisted Development</span>
+            <span>Rapid Prototyping</span>
+            <span>Figma</span>
+            <span>Claude</span>
+            <span>Cursor</span>
+            <span>React Native</span>
+            <span>Next.js</span>
+            <span>Supabase</span>
+            <span>Firebase</span>
+            <span>Codex</span>
+            <span>OpenAI</span>
+            <span>Replit</span>
+            <span>Vercel</span>
+            <span>v0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="contact-title">Let's build something useful.</h2>
+        </div>
+        <div class="contact-links reveal">
+          <a class="contact-link" href="https://www.linkedin.com/in/hipauline/" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
+          <a class="contact-link" href="mailto:paulinesmcnaughton@gmail.com">Email <span class="arr">↗</span></a>
+          <a class="contact-link" href="#" data-locked data-enc="assets/casestudy.enc" data-dl="Pauline-Shay-Case-Study.pdf" data-label="Case Study">Case Study <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><span class="arr">↗</span></a>
+          <a class="contact-link" href="#" data-locked data-enc="assets/resume.enc" data-dl="Pauline-Shay-CV.pdf" data-label="Resume">Resume <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><span class="arr">↗</span></a>
+          <a class="contact-link" href="https://medium.com/@hipauline" target="_blank" rel="noopener">Medium <span class="arr">↗</span></a>
+          <a class="contact-link" href="https://github.com/paulinesmcnaughton-shay" target="_blank" rel="noopener">GitHub <span class="muted">(limited)</span> <span class="arr">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RESUME PASSWORD GATE ===================== -->
+  <div class="gate-overlay" id="resumeGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle" hidden>
+    <div class="gate-card" id="gateCard">
+      <button class="gate-x" type="button" aria-label="Close" data-gate-close>×</button>
+      <div class="gate-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      </div>
+      <h2 class="gate-title" id="gateTitle">Resume is password-protected</h2>
+      <p class="gate-sub" id="gateSub">This file is encrypted because it contains personal details. Enter the password to decrypt and download it — don't have it? Reach out via LinkedIn or email.</p>
+      <form class="gate-form" id="gateForm" autocomplete="off">
+        <input class="gate-input" id="gateInput" type="password" placeholder="Password" aria-label="Password" autocomplete="off" />
+        <p class="gate-err" id="gateErr" role="alert"></p>
+        <div class="gate-actions">
+          <button class="btn btn-ghost" type="button" data-gate-close>Cancel</button>
+          <button class="btn btn-primary" id="gateSubmit" type="submit">Unlock <span class="arr">→</span></button>
+        </div>
+      </form>
+      <div class="gate-success" id="gateSuccess" hidden>
+        <p class="gate-sub" style="margin-top:0">Decrypted successfully — download your copy below.</p>
+        <div class="gate-actions">
+          <a class="btn btn-primary" id="gateDownload" href="#" download="file.pdf" style="flex:1;justify-content:center"><span class="gd-label">Download</span> <span class="arr">↓</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site">
+    <div class="foot-inner">
+      <div class="foot-copy">© 2026 Pauline Shay · Lead Product Designer</div>
+      <a class="foot-red" href="matrix.html" data-warp="HOME" aria-label="View the alternative version of this portfolio"><span class="pill"></span> Enter the Matrix — see the alternative portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Sticky-nav border on scroll */
+    const navEl = document.getElementById("topnav");
+    const onScroll = () => navEl.classList.toggle("scrolled", window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    /* Reveal-on-scroll — content is visible by default; only elements below the
+       initial viewport start hidden, so the hero can never be blank. An
+       unconditional safety net clears any transition that fails to progress. */
+    const reveals = [...document.querySelectorAll(".reveal")];
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduce) {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach((el, i) => {
+        el.style.transitionDelay = Math.min(i % 4, 3) * 60 + "ms";
+        const r = el.getBoundingClientRect();
+        if (r.top > vh * 0.85) el.classList.add("pre"); // hide only what's below the fold
+      });
+
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+        reveals.forEach((el) => { if (el.classList.contains("pre")) io.observe(el); });
+      } else {
+        reveals.forEach((el) => el.classList.remove("pre"));
+      }
+
+      // Unconditional backstop: guarantee everything is visible, killing any stuck transition.
+      setTimeout(() => reveals.forEach((el) => { el.style.transition = "none"; el.classList.remove("pre"); }), 1600);
+    }
+
+  </script>
+  <script src="gate.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enora — AI-Assisted Postpartum Wellness · Pauline Shay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../site.css" />
+<link rel="stylesheet" href="../case-study.css" />
+<link rel="stylesheet" href="matrix-case-study.css" />
+<style>
+  :root { --accent: #e85da0; }
+  /* Three-up cards reuse .goal styling */
+  .mode-grid { margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 820px) { .mode-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-screen-label="Enora case study" data-page="enora">
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a class="wordmark" href="/matrix.html" data-warp="HOME"><span class="dot"></span>Pauline Shay</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="backbar">
+      <a class="back" href="/matrix.html" data-warp="HOME">//Back</a>
+    </div>
+
+    <section class="cs-hero">
+      <div class="cs-hero-frame">
+        <img class="cs-hero-img" src="../../assets/work-enora.png" alt="Enora — AI-assisted postpartum wellness app keynote hero" />
+        <div class="cs-wip" aria-label="Work in progress"><span>Work in progress</span></div>
+      </div>
+    </section>
+
+    <section class="cs-head">
+      <div>
+        <p class="cs-eyebrow">Female Wellness · AI · Mobile</p>
+        <h1 class="cs-title">Enora</h1>
+        <p class="cs-summary">A postpartum wellness concept that helps new mothers reflect on their emotions, track mood patterns, and feel supported through gentle journaling, guided check-ins, and AI-supported reflection.</p>
+      </div>
+      <div class="cs-meta">
+        <div class="row"><span class="k">Role</span><span class="v">Founder, Product Designer</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2026 — Present</span></div>
+        <div class="row"><span class="k">Platform</span><span class="v">iOS · Android</span></div>
+        <div class="row"><span class="k">Focus</span><span class="v">AI product design, wellness UX, onboarding, journaling, mood tracking</span></div>
+        <div class="row"><span class="k">Tools</span><span class="v">Figma, Claude, Cursor, React Native, Expo, Supabase, OpenAI</span></div>
+      </div>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <section class="cs-intro">
+      <p class="cs-kicker">Overview</p>
+      <p class="lead">AI-assisted emotional wellness for postpartum and early motherhood.</p>
+      <p>Enora is a mobile wellness concept designed for mothers navigating postpartum life, emotional overwhelm, identity shifts, and the everyday mental load of caregiving.</p>
+      <p>The product started as Thessa and evolved into Enora, a softer and more focused experience built around reflection, emotional tracking, and AI-guided support. The goal was not to replace therapy or medical care, but to create a private, low-pressure space where mothers could check in with themselves, notice patterns, and feel less alone.</p>
+    </section>
+
+    <!-- ===== The problem ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">The problem</p>
+      <p class="cs-note">Postpartum support often <strong>disappears after the baby arrives.</strong></p>
+      <p class="cs-summary" style="margin-top:18px;max-width:780px;">New mothers are expected to recover physically, manage feeding, sleep, childcare, household responsibilities, relationship changes, and emotional shifts, often while feeling isolated or unsure if what they are experiencing is &ldquo;normal.&rdquo;</p>
+      <p class="cs-summary" style="margin-top:16px;max-width:780px;">Many wellness apps feel too broad, too clinical, or too demanding. For a postpartum user, even opening an app can feel like another task.</p>
+      <p class="cs-note" style="margin-top:30px;max-width:760px;">How can an emotional wellness app feel <strong>gentle enough to use</strong> when someone is overwhelmed, tired, or barely holding it together?</p>
+    </section>
+
+    <!-- ===== Product direction ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Product direction</p>
+      <p class="cs-summary" style="max-width:740px;">Enora focuses on small, emotionally safe interactions instead of heavy tracking. The experience centers around quick daily check-ins, guided journaling, mood patterns, calming prompts, and AI-supported reflection, intentionally quiet, soft, and private, with an emphasis on helping users name what they feel without judgment.</p>
+      <div class="mode-grid">
+        <article class="goal">
+          <span class="num">01</span>
+          <h3>Daily emotional check-ins</h3>
+          <p>A simple flow for users to log how they feel without needing to write a full journal entry.</p>
+        </article>
+        <article class="goal">
+          <span class="num">02</span>
+          <h3>AI-guided reflection</h3>
+          <p>Personalized prompts that help users unpack emotions, identify recurring stressors, and reflect with more clarity.</p>
+        </article>
+        <article class="goal">
+          <span class="num">03</span>
+          <h3>Mood &amp; pattern tracking</h3>
+          <p>A lightweight way to see emotional trends over time without turning wellness into a data-heavy dashboard.</p>
+        </article>
+        <article class="goal">
+          <span class="num">04</span>
+          <h3>Supportive content</h3>
+          <p>Short meditations, grounding exercises, and reflective prompts designed for postpartum moments.</p>
+        </article>
+        <article class="goal">
+          <span class="num">05</span>
+          <h3>Private journal space</h3>
+          <p>A calm, personal area where users can write freely and revisit past entries.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Design approach ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Design approach</p>
+      <p class="cs-note" style="max-width:780px;">The design needed to feel <strong>warm, safe, and emotionally grounded.</strong></p>
+      <p class="cs-summary" style="margin-top:18px;max-width:780px;">I avoided a clinical health app look and instead created a softer wellness experience with gentle colors, spacious layouts, low-friction interactions, and supportive language. Every screen was designed to reduce pressure and make the user feel like they could engage for 30 seconds or several minutes.</p>
+      <p class="cs-summary" style="margin-top:16px;max-width:780px;">The tone of the product was especially important. Enora needed to feel supportive without being cheesy, personal without being invasive, and intelligent without feeling robotic.</p>
+    </section>
+
+    <!-- ===== AI exploration ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">AI exploration</p>
+      <p class="cs-summary" style="max-width:780px;">Enora explores how AI can support emotional reflection in a careful and human-centered way. The AI experience is designed to help users make sense of their thoughts, generate gentle prompts, summarize emotional patterns, and offer grounding suggestions.</p>
+      <p class="cs-note" style="margin-top:24px;max-width:760px;">The role of AI is intentionally limited to <strong>reflection and support</strong>, not diagnosis or medical advice.</p>
+      <p class="cs-summary" style="margin-top:18px;max-width:780px;">This made the product an opportunity to think through safety, trust, emotional tone, and boundaries inside an AI-powered wellness experience.</p>
+    </section>
+
+    <!-- ===== My role ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">My role</p>
+      <p class="cs-summary" style="max-width:680px;">I led the product concept, UX strategy, visual direction, and mobile experience.</p>
+      <div class="design-list">
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Defining the product scope</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mapping the core user journey</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Designing onboarding and check-in flows</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Shaping the AI journaling experience</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Creating the visual system</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Using AI-assisted tools to move from idea to prototype</span>
+      </div>
+    </section>
+
+    <!-- ===== Outcome ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Outcome</p>
+      <p class="cs-summary" style="max-width:780px;">Enora became part of my broader exploration into AI-assisted consumer products, especially products that combine emotional intelligence, mobile UX, and real-life user needs.</p>
+      <p class="cs-note" style="margin-top:24px;max-width:760px;">It helped me explore how AI can be used in sensitive spaces where <strong>trust, privacy, tone, and simplicity</strong> matter just as much as functionality.</p>
+    </section>
+
+    <!-- ===== Close ===== -->
+    <section class="cs-close">
+      <h2>Designing technology that feels human</h2>
+      <p>Enora is where I bring product strategy, wellness UX, and AI design together around a deeply personal moment in life. Want a closer look at the flows and AI experience behind it?</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="../../portfolio.html#contact">Get in touch <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="/matrix.html" data-warp="HOME">View other work</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="foot-inner">
+      <div class="foot-copy">&copy; 2026 Pauline Shay &middot; Lead Product Designer</div>
+      <a class="foot-blue" href="../enora.html"><span class="pill"></span> Take the Blue Pill &mdash; see the classic version</a>
+    </div>
+  </footer>
+
+  <script src="../../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Little Sort — Game · Pauline Shay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="case-study.css" />
+<style>
+  :root { --accent: #7c5cfa; }
+
+  /* Tagline under the title */
+  .cs-tagline { margin: 16px 0 0; font-size: clamp(17px, 2vw, 21px); font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+  /* Status value with a "live/near launch" dot */
+  .cs-meta .v .st { display: inline-flex; align-items: center; gap: 8px; }
+  .cs-meta .v .st .pd { width: 8px; height: 8px; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 3px color-mix(in srgb, #1f9d55 18%, transparent); }
+
+  /* "What I Built" — mode cards reuse .goal styling via .goals-grid */
+  .mode-grid { margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 820px) { .mode-grid { grid-template-columns: 1fr; } }
+
+  /* Decisions reuse .flows; allow a sublist + stacked paragraphs */
+  .flow .ftext p + p { margin-top: 12px; }
+  .flow-list { margin: 16px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px 30px; }
+  .flow-list li { position: relative; padding-left: 18px; font-size: 15px; font-weight: 500; color: var(--text-2); }
+  .flow-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  @media (max-width: 560px) { .flow-list { grid-template-columns: 1fr; } }
+
+  /* Systems built — category cards with checklists */
+  .sys-grid { margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+  .sys {
+    border: 1px solid var(--border); border-radius: 18px; background: var(--bg-subtle);
+    padding: 26px 24px 28px;
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .sys:hover { border-color: var(--border-strong); box-shadow: 0 12px 30px rgba(16,24,40,0.05); }
+  .sys h3 { margin: 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+  .sys h3 .sd { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .sys ul { margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .sys li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.45; color: var(--text-2); }
+  .sys li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 50%, var(--text-3)); }
+  @media (max-width: 900px) { .sys-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .sys-grid { grid-template-columns: 1fr; } }
+
+  /* Status callout strip */
+  .status-strip {
+    margin: 28px 0 0; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 18px 22px; border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--bg));
+  }
+  .status-strip .tag {
+    display: inline-flex; align-items: center; gap: 8px; flex: none;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); white-space: nowrap;
+    padding: 7px 13px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .status-strip .tag .pd { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s var(--ease) infinite; }
+  .status-strip p { margin: 0; font-size: clamp(15px, 1.7vw, 16.5px); font-weight: 500; color: var(--text); line-height: 1.5; }
+</style>
+</head>
+<body data-screen-label="Game — Little Sort case study">
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a class="wordmark" href="../portfolio.html"><span class="dot"></span>Pauline Shay</a>
+      <div class="nav-links">
+        <a class="nav-extra" href="../portfolio.html#work">Work</a>
+        <a class="nav-extra" href="../portfolio.html#about">About</a>
+        <a class="nav-extra" href="../portfolio.html#contact">Contact</a>
+        <a class="matrix" href="../index.html">Enter the Matrix ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="backbar">
+      <a class="back" href="../portfolio.html#work"><span class="arr">←</span> Back to all work</a>
+    </div>
+
+    <section class="cs-hero">
+      <img class="cs-hero-img" src="../assets/work-games.png?v=8" alt="Little Sort cozy mobile puzzle game showing Daily, home, and Match It screens" />
+    </section>
+
+    <section class="cs-head">
+      <div>
+        <p class="cs-eyebrow">Game</p>
+        <h1 class="cs-title">Little Sort</h1>
+        <p class="cs-summary">A cozy mobile puzzle game with sorting, tubes, and match-3 modes. I designed and built the full experience, including gameplay systems, level progression, power-ups, sound, haptics, monetization scaffolding, and launch readiness.</p>
+      </div>
+      <div class="cs-meta">
+        <div class="row"><span class="k">Role</span><span class="v">Product Designer, Game UX, AI-Assisted Builder</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2026</span></div>
+        <div class="row"><span class="k">Platform</span><span class="v">iOS</span></div>
+        <div class="row"><span class="k">Tools</span><span class="v">Figma, Claude, Cursor, React Native, Expo, TypeScript</span></div>
+        <div class="row"><span class="k">Status</span><span class="v"><span class="st"><span class="pd"></span>Near launch</span></span></div>
+      </div>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <section class="cs-intro">
+      <p class="cs-kicker">Overview</p>
+      <p class="lead">A growing collection of casual mobile games I'm designing and building from the ground up.</p>
+      <p>These projects combine product design, game UX, AI-assisted development, motion, progression systems, monetization planning, and hands-on implementation. I'm using tools like Claude, Cursor, React Native, Expo, and TypeScript with mobile-first design patterns to move from idea to playable product quickly.</p>
+      <p>The goal is not just to make something cute. It's to understand what makes a game feel clear, satisfying, replayable, and shippable.</p>
+    </section>
+
+    <!-- ===== Featured game ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">The featured game</p>
+      <p class="cs-note">Little Sort is a cozy casual puzzle game built around sorting, matching, and <strong>satisfying completion moments.</strong></p>
+      <p class="cs-summary" style="margin-top:18px;max-width:760px;">The game started as a simple sorting concept and evolved into a multi-mode puzzle experience with 500 Match It levels, 100 Tubes levels, daily play, sound effects, haptics, power-ups, progression, and monetization scaffolding. I designed and built the experience end to end, including the visual system, gameplay flows, level selection, onboarding, reward loops, settings, ads, in-app purchase scaffolding, and launch checklist.</p>
+    </section>
+
+    <!-- ===== What I Built — 3 modes ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">What I built</p>
+      <p class="cs-summary" style="max-width:680px;">Little Sort includes three main play styles, each sharing a consistent product shell.</p>
+      <div class="mode-grid">
+        <article class="goal">
+          <span class="num">01</span>
+          <h3>Little Sort Classic</h3>
+          <p>A cozy organization puzzle where players move items across shelves to complete matching rows.</p>
+        </article>
+        <article class="goal">
+          <span class="num">02</span>
+          <h3>Tubes Mode</h3>
+          <p>A water-sort inspired mode where players pour stacked items between vertical glass tubes. Same sorting logic, more intuitive presentation.</p>
+        </article>
+        <article class="goal">
+          <span class="num">03</span>
+          <h3>Match It</h3>
+          <p>A match-3 mode with 500 levels, spanning timed and move-based levels, color objectives, blockers, rainbow tiles, power-ups, and hard / super-hard spikes.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== My Role ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">My role</p>
+      <p class="cs-summary" style="max-width:680px;">I handled product design, UX, game systems, visual direction, interaction design, and the AI-assisted development workflow.</p>
+      <div class="design-list">
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Designing the core game experience and navigation</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Creating the visual language for a cozy, polished mobile game</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Building level progression and difficulty structure</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Designing first-time education and "how to play" flows</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Adding power-ups, rewards, haptics, sound, and game feedback</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Testing levels for clarity, fairness, and replayability</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Setting up monetization for ads, memberships, and IAP</span>
+        <span class="di"><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Preparing the product for App Store readiness</span>
+      </div>
+    </section>
+
+    <!-- ===== Design challenge ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">The design challenge</p>
+      <p class="cs-note" style="max-width:780px;">Make the game feel <strong>simple on the surface</strong> while supporting enough depth to stay interesting over time.</p>
+      <div style="margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px 48px;max-width:920px;">
+        <p style="margin:0;font-size:clamp(15.5px,1.7vw,17px);line-height:1.7;color:var(--text-2);">For Little Sort and Tubes, the rules needed to be immediately understandable. Players should know what they can move, where they can move it, and why a move is valid, without a long explanation.</p>
+        <p style="margin:0;font-size:clamp(15.5px,1.7vw,17px);line-height:1.7;color:var(--text-2);">For Match It, the challenge was different. The game needed enough variety to support hundreds of levels without feeling random, unfair, or repetitive.</p>
+      </div>
+    </section>
+
+    <!-- ===== Key design decisions ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Key design decisions</p>
+      <div class="flows" style="margin-top:30px;">
+        <div class="flow">
+          <span class="step">1</span>
+          <div class="ftext">
+            <h3>Make the rules visible through the UI</h3>
+            <p>In the original Tubes mode, items sat on shelves. The logic worked, but the shelf metaphor made the rules harder to read. Players were sorting stacked items while the layout looked like shelf placement.</p>
+            <p>I changed the presentation to vertical glass tubes so the rule became visually obvious: pick up the top item, pour it into a matching or empty tube. A presentation change, not a logic rewrite. The existing rules stayed intact while the UI now communicates how the game works.</p>
+          </div>
+        </div>
+        <div class="flow">
+          <span class="step">2</span>
+          <div class="ftext">
+            <h3>Keep the core game screen consistent</h3>
+            <p>Little Sort, Tubes, and Match It each have different mechanics, but they share consistent patterns for header controls, settings, info, sound, haptics, and level navigation, so the game feels like one product instead of separate mini-games stitched together.</p>
+          </div>
+        </div>
+        <div class="flow">
+          <span class="step">3</span>
+          <div class="ftext">
+            <h3>Add variety without breaking the core loop</h3>
+            <p>Match It layers in several mechanics over time, each added carefully so it expands the game without making the early experience feel overwhelming.</p>
+            <ul class="flow-list">
+              <li>Move-based levels</li>
+              <li>Timed levels</li>
+              <li>Color collection goals</li>
+              <li>Breakable blockers</li>
+              <li>Rainbow diamond tiles</li>
+              <li>Hard &amp; super-hard spikes</li>
+              <li>Power-ups</li>
+              <li>Rewarded-ad continues</li>
+              <li>Daily member gifts</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flow">
+          <span class="step">4</span>
+          <div class="ftext">
+            <h3>Design for launch, not just a prototype</h3>
+            <p>I treated the game like a real product from the start, with settings, restore purchases, account deletion flows, ads and IAP scaffolding, test IDs, privacy and terms placeholders, level testing, and store-readiness tasks.</p>
+            <p>The result is closer to a launch-ready mobile product than a design mockup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Systems built ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Systems built</p>
+      <div class="sys-grid">
+        <div class="sys">
+          <h3><span class="sd"></span>Gameplay</h3>
+          <ul>
+            <li>Shelf sorting logic</li>
+            <li>Tubes sorting logic</li>
+            <li>Match-3 engine</li>
+            <li>Level progression &amp; picker</li>
+            <li>Daily play mode</li>
+            <li>Win, lose, retry &amp; continue states</li>
+            <li>Stars, scoring &amp; combo rewards</li>
+            <li>Timed and move-based fail states</li>
+          </ul>
+        </div>
+        <div class="sys">
+          <h3><span class="sd"></span>Game feel</h3>
+          <ul>
+            <li>Haptics</li>
+            <li>Sound effects</li>
+            <li>Win chimes &amp; lose cues</li>
+            <li>Selection feedback</li>
+            <li>Completion glow</li>
+            <li>Power-up animations</li>
+            <li>Visual highlights for valid moves</li>
+          </ul>
+        </div>
+        <div class="sys">
+          <h3><span class="sd"></span>Monetization</h3>
+          <ul>
+            <li>Rewarded ads</li>
+            <li>AdMob scaffolding</li>
+            <li>Membership flag</li>
+            <li>Restore purchases flow</li>
+            <li>In-app purchase scaffolding</li>
+            <li>Paywall screen</li>
+            <li>Member daily reward</li>
+            <li>Buy-continue placeholder</li>
+          </ul>
+        </div>
+        <div class="sys">
+          <h3><span class="sd"></span>Content</h3>
+          <ul>
+            <li>500 Match It levels</li>
+            <li>100 Tubes levels</li>
+            <li>Tuned difficulty curve</li>
+            <li>Hard &amp; super-hard badges</li>
+            <li>Color objective levels</li>
+            <li>Crate blocker levels</li>
+            <li>Rainbow diamond levels</li>
+            <li>Power-up unlocks from level 10+</li>
+          </ul>
+        </div>
+        <div class="sys">
+          <h3><span class="sd"></span>Product readiness</h3>
+          <ul>
+            <li>Settings &amp; sound / music toggles</li>
+            <li>First-time "how to play" education</li>
+            <li>Account deletion request flow</li>
+            <li>Auth scaffolding</li>
+            <li>Store launch checklist</li>
+            <li>Typecheck &amp; test coverage</li>
+            <li>Production build preparation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Current status ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">Current status</p>
+      <div class="status-strip">
+        <span class="tag"><span class="pd"></span>Near launch</span>
+        <p>Core gameplay systems are built and level-tested for fairness and clarity. Match It is the most complete mode, with 500 levels and multiple mechanics live.</p>
+      </div>
+      <p class="cs-summary" style="margin-top:22px;max-width:780px;">The final gameplay task is updating Tubes mode from a shelf-style layout to a true vertical glass-tube UI. After that, the remaining work is mostly launch plumbing: real ads, real in-app purchases, auth, App Store assets, privacy links, and production build testing.</p>
+    </section>
+
+    <!-- ===== What I learned ===== -->
+    <section class="cs-section">
+      <p class="cs-kicker">What I learned</p>
+      <p class="cs-summary" style="max-width:780px;">This project pushed me beyond traditional product design into full product building. I had to think through not only screens and flows, but game logic, difficulty pacing, edge cases, player motivation, monetization, testing, and launch requirements.</p>
+      <p class="cs-summary" style="margin-top:16px;max-width:780px;">It also sharpened my AI-assisted product workflow. I used AI tools to move faster, but the product decisions, UX judgment, visual direction, testing, and prioritization came from me.</p>
+      <p class="cs-note" style="margin-top:30px;max-width:760px;">The biggest lesson: a game only feels simple when the system behind it is <strong>carefully designed.</strong></p>
+    </section>
+
+    <!-- ===== Close ===== -->
+    <section class="cs-close">
+      <h2>From idea to a launch-ready mobile game</h2>
+      <p>Little Sort is where I bring product design, game UX, and hands-on building together. Want a playable walkthrough or a closer look at the systems behind it?</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="../portfolio.html#contact">Get in touch <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="../portfolio.html#work">View other work</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="foot-inner">
+      <div class="foot-copy">© 2026 Pauline Shay · Lead Product Designer</div>
+      <a class="foot-red" href="../index.html"><span class="pill"></span> Enter the Matrix — see the creative version</a>
+    </div>
+  </footer>
+
+</body>
+</html>

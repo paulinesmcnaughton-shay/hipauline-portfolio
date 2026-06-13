@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Pauline McNaughton | Product Designer</title>
+<meta name="description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:title" content="About — Pauline McNaughton | Product Designer" />
+<meta property="og:description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:url" content="https://hipauline.com/about" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://hipauline.com/about" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; }
+  body {
+    background: #050806;
+    color: #dbe5dd;
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .about {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 15vh, 170px) 30px clamp(90px, 16vh, 160px);
+  }
+
+  /* ---- Title: clean text, only the period blinks neon ---- */
+  .title {
+    margin: 0 0 clamp(44px, 8vh, 84px);
+    font-weight: 300;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #f1f6f2;
+  }
+  .title .dot {
+    display: inline-block;
+    font-size: 2em;
+    line-height: 0;
+    vertical-align: baseline;
+    color: var(--neon);
+    text-shadow: 0 0 12px rgba(60,255,150,0.7), 0 0 30px rgba(40,220,120,0.45);
+    animation: dot-blink 1.15s steps(1, end) infinite;
+  }
+  @keyframes dot-blink {
+    0%, 55%   { opacity: 1; }
+    56%, 100% { opacity: 0.12; }
+  }
+
+  /* ---- Editorial essay ---- */
+  .essay {
+    font-size: clamp(17px, 2.1vw, 20px);
+    line-height: 1.82;
+    font-weight: 400;
+    color: #cdd8d0;
+  }
+  .essay p { margin: 0 0 1.7em; text-wrap: pretty; }
+  .essay strong { color: #f1f6f2; font-weight: 500; }
+  .essay .proj { color: var(--neon); font-style: italic; font-weight: 500; }
+
+  /* a quiet section break line */
+  .essay .break {
+    margin: 2.6em 0;
+    font-size: 1.16em;
+    font-style: italic;
+    color: #eaf2ec;
+  }
+
+  /* ---- Closing coda ---- */
+  .coda { margin-top: 3.4em; }
+  .coda p {
+    margin: 0 0 0.85em;
+    font-size: 1.12em;
+    color: #e3ede5;
+  }
+  .coda .final {
+    margin-top: 1.5em;
+    font-size: 1.32em;
+    font-weight: 500;
+    color: var(--neon);
+    text-shadow: 0 0 18px rgba(40,220,120,0.25);
+  }
+
+  /* ---- Minimal ring spinner comes from the shared site.css ---- */
+
+  /* ---- Take the Blue Pill: return-home link ---- */
+  .blue-pill {
+    display: inline-block;
+    margin-top: clamp(50px, 9vh, 92px);
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #5b9dff;
+    text-decoration: none;
+    text-shadow: 0 0 12px rgba(91,157,255,0.45);
+    border-bottom: 1px solid rgba(91,157,255,0.35);
+    padding-bottom: 4px;
+    transition: color 0.2s ease, border-color 0.2s ease, text-shadow 0.2s ease;
+  }
+  .blue-pill:hover, .blue-pill:focus-visible {
+    color: #93bcff;
+    border-color: rgba(147,188,255,0.75);
+    text-shadow: 0 0 18px rgba(91,157,255,0.7);
+    outline: none;
+  }
+
+  /* ---- Capabilities ---- */
+  .mx-section-label {
+    margin: clamp(52px, 9vh, 88px) 0 22px;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--neon);
+    opacity: 0.7;
+  }
+  .mx-section-label::before { content: "// "; opacity: 0.6; }
+
+  .mx-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .mx-tags span {
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: #c4f7d6;
+    padding: 7px 13px;
+    border: 1px solid rgba(93, 255, 150, 0.22);
+    border-radius: 999px;
+    background: rgba(93, 255, 150, 0.04);
+    transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .mx-tags span:hover {
+    color: var(--neon);
+    border-color: rgba(93, 255, 150, 0.55);
+    background: rgba(93, 255, 150, 0.08);
+  }
+
+  /* ---- Contact ---- */
+  .mx-contact-title {
+    margin: 0 0 22px;
+    font-size: clamp(22px, 2.8vw, 28px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: #f1f6f2;
+  }
+  .mx-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .mx-contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: #c4f7d6;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(93, 255, 150, 0.08);
+    transition: color 0.18s ease, padding-left 0.18s ease;
+  }
+  .mx-contact-links a:last-child { border-bottom: none; }
+  .mx-contact-links a:hover { color: var(--neon); padding-left: 6px; }
+  .mx-contact-links a .arr { opacity: 0.5; font-size: 12px; }
+  .mx-contact-links a:hover .arr { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .title .dot { animation: none; opacity: 1; }
+  }
+
+  /* ---- Password gate (Matrix dark theme) ---- */
+  .gate-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    background: rgba(0, 4, 0, 0.78);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity 0.24s ease;
+  }
+  .gate-overlay.open { opacity: 1; pointer-events: auto; }
+  .gate-card {
+    position: relative;
+    width: 100%; max-width: 392px;
+    background: #040e04; color: #d6ffe2;
+    border: 1px solid rgba(93,255,150,0.22); border-radius: 18px;
+    padding: 28px 26px 24px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 40px rgba(0,60,20,0.14);
+    transform: translateY(10px) scale(0.985);
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .gate-overlay.open .gate-card { transform: none; }
+  .gate-card.shake { animation: gate-shake 0.4s ease; }
+  @keyframes gate-shake {
+    0%,100% { transform: none; }
+    20% { transform: translateX(-7px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(3px); }
+  }
+  .gate-icon {
+    width: 42px; height: 42px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(93,255,150,0.10); color: #5dff96; margin-bottom: 16px;
+  }
+  .gate-icon svg { width: 20px; height: 20px; }
+  .gate-title { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #f1f6f2; }
+  .gate-sub { margin: 7px 0 0; font-size: 13px; color: rgba(214,255,226,0.62); line-height: 1.55; }
+  .gate-form { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .gate-input {
+    width: 100%; padding: 12px 14px; font-size: 15px; font-family: inherit;
+    color: #d6ffe2; background: #010802;
+    border: 1px solid rgba(93,255,150,0.22); border-radius: 11px;
+    outline: none; transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .gate-input:focus { border-color: #5dff96; box-shadow: 0 0 0 3px rgba(93,255,150,0.16); }
+  .gate-input.err { border-color: #e01228; box-shadow: 0 0 0 3px rgba(224,18,40,0.14); }
+  .gate-err { font-size: 13px; color: #ff6b7a; min-height: 16px; margin: -2px 0 0; }
+  .gate-actions { display: flex; gap: 9px; margin-top: 4px; }
+  .gate-x {
+    position: absolute; top: 14px; right: 14px;
+    width: 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; cursor: pointer; background: transparent;
+    color: rgba(214,255,226,0.4); font-size: 18px; line-height: 1;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .gate-x:hover { background: rgba(93,255,150,0.08); color: #5dff96; }
+  .gate-card .btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.02em;
+    padding: 12px 18px; border-radius: 10px;
+    border: 1px solid transparent; cursor: pointer; font-family: inherit;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .gate-card .btn .arr { transition: transform 0.2s ease; }
+  .gate-card .btn:hover .arr { transform: translateX(3px); }
+  .gate-card .btn-ghost { background: transparent; color: rgba(214,255,226,0.7); border-color: rgba(93,255,150,0.22); }
+  .gate-card .btn-ghost:hover { border-color: rgba(93,255,150,0.5); color: #d6ffe2; }
+  .gate-card .btn-primary { background: #5dff96; color: #010802; box-shadow: 0 0 18px rgba(93,255,150,0.28); }
+  .gate-card .btn-primary:hover { background: #7affaa; }
+  .gate-success { }
+</style>
+</head>
+<body>
+  <main class="about" data-page>
+    <h1 class="title">Access Granted<span class="dot">.</span></h1>
+
+    <div class="essay">
+      <p>My career started with a simple belief: <strong>the best products make complicated things feel effortless.</strong></p>
+
+      <p>Since 2018, I've worked with startups and enterprise teams to turn complex systems, workflows, and ideas into experiences people actually enjoy using. Over the years, I've designed for veterinary hospitals, educational technology platforms, healthcare products, cloud networking tools, consumer marketplaces, and enterprise software used by thousands of people every day.</p>
+
+      <p class="break">Recently, AI changed how I think about building products.</p>
+
+      <p>Instead of stopping at prototypes and design files, I've been exploring how AI-assisted workflows can help move ideas all the way to working software. Using tools like Claude, Cursor, Vercel, v0, Replit, OpenAI, Codex, Supabase, React Native, and Node/Next.js, I've been designing and building independent products including <span class="proj">WildKind</span>, <span class="proj">Little Sort</span>, <span class="proj">Pipli</span> and <span class="proj">ANKrD</span>.</p>
+
+      <p>Whether I'm working on enterprise software or an independent product built from scratch, the goal is always the same: solve real problems and create experiences people genuinely enjoy using.</p>
+
+      <p class="break">Outside of work.</p>
+
+      <p>I'm a mom of two, a lifelong gamer, and someone who is endlessly curious about how things work. I was born in Hong Kong and moved to the United States as a child. That experience shaped how I see the world and taught me to adapt quickly, embrace change, and appreciate different perspectives.</p>
+
+      <p>When I'm away from my computer, you'll usually find me hiking with my family, planning our next trip, watching movies, exploring new technology, or getting lost in games like <em>Final Fantasy</em>, <em>Ghost of Tsushima</em>, <em>Hogwarts Legacy</em>, and <em>Animal Crossing</em>.</p>
+
+      <p>Whether I'm designing products, building side projects, or raising my kids, I'm driven by the same thing: <strong>curiosity, creativity, and a desire to make things a little better than I found them.</strong></p>
+
+      <div class="coda">
+        <p>The tools change.</p>
+        <p>The technology changes.</p>
+        <p>The goal stays the same.</p>
+        <p class="final">Build products people genuinely enjoy using.</p>
+      </div>
+
+      <p class="mx-section-label">Capabilities</p>
+      <div class="mx-tags" role="list" aria-label="Capabilities">
+        <span role="listitem">Zero-to-One Product Design</span>
+        <span role="listitem">Enterprise Platforms</span>
+        <span role="listitem">AI-Powered Experiences</span>
+        <span role="listitem">Mobile Applications</span>
+        <span role="listitem">Design Systems</span>
+        <span role="listitem">Product Strategy</span>
+        <span role="listitem">AI-Assisted Development</span>
+        <span role="listitem">Rapid Prototyping</span>
+        <span role="listitem">Figma</span>
+        <span role="listitem">Claude</span>
+        <span role="listitem">Cursor</span>
+        <span role="listitem">React Native</span>
+        <span role="listitem">Next.js</span>
+        <span role="listitem">Supabase</span>
+        <span role="listitem">Firebase</span>
+        <span role="listitem">Codex</span>
+        <span role="listitem">OpenAI</span>
+        <span role="listitem">Replit</span>
+        <span role="listitem">Vercel</span>
+        <span role="listitem">v0</span>
+      </div>
+
+      <p class="mx-section-label" style="margin-top: clamp(44px, 7vh, 72px)">Contact</p>
+      <nav class="mx-contact-links" aria-label="Contact links">
+        <a href="https://linkedin.com/in/hipauline/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          LinkedIn <span class="arr">↗</span>
+        </a>
+        <a href="mailto:paulinesmcnaughton@gmail.com" aria-label="Send email">
+          paulinesmcnaughton@gmail.com <span class="arr">→</span>
+        </a>
+        <a href="#" data-locked data-enc="assets/casestudy.enc" data-dl="Pauline-Shay-Case-Study.pdf" data-label="Case Study" aria-label="Unlock and download case study">
+          Case Study <svg style="width:13px;height:13px;margin-left:4px;opacity:0.55;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span class="arr">↗</span>
+        </a>
+        <a href="#" data-locked data-enc="assets/resume.enc" data-dl="Pauline-Shay-CV.pdf" data-label="Resume" aria-label="Unlock and download resume">
+          Resume <svg style="width:13px;height:13px;margin-left:4px;opacity:0.55;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span class="arr">↗</span>
+        </a>
+        <a href="https://medium.com/@hipauline" target="_blank" rel="noopener noreferrer" aria-label="Medium articles">
+          Medium <span class="arr">↗</span>
+        </a>
+        <a href="https://github.com/paulinesmcnaughton-shay" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+          GitHub <span class="arr">↗</span>
+        </a>
+      </nav>
+
+      <a class="blue-pill" href="matrix.html" data-warp="HOME" aria-label="Take the blue pill — return home">Take the Blue Pill</a>
+    </div>
+  </main>
+
+  <!-- Password gate -->
+  <div class="gate-overlay" id="resumeGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle" hidden>
+    <div class="gate-card" id="gateCard">
+      <button class="gate-x" type="button" aria-label="Close" data-gate-close>×</button>
+      <div class="gate-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      </div>
+      <h2 class="gate-title" id="gateTitle">Resume is password-protected</h2>
+      <p class="gate-sub" id="gateSub">This file is encrypted. Enter the password to decrypt and download it — don't have it? Reach out via LinkedIn or email.</p>
+      <form class="gate-form" id="gateForm" autocomplete="off">
+        <input class="gate-input" id="gateInput" type="password" placeholder="Password" aria-label="Password" autocomplete="off" />
+        <p class="gate-err" id="gateErr" role="alert"></p>
+        <div class="gate-actions">
+          <button class="btn btn-ghost" type="button" data-gate-close>Cancel</button>
+          <button class="btn btn-primary" id="gateSubmit" type="submit">Unlock <span class="arr">→</span></button>
+        </div>
+      </form>
+      <div class="gate-success" id="gateSuccess" hidden>
+        <p class="gate-sub" style="margin-top:0">Decrypted — download your copy below.</p>
+        <div class="gate-actions">
+          <a class="btn btn-primary" id="gateDownload" href="#" download="file.pdf" style="flex:1;justify-content:center;text-decoration:none"><span class="gd-label">Download</span> <span class="arr">↓</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared chrome: cursor, menu, spinner, warp transitions -->
+  <script src="site.js"></script>
+  <script src="gate.js"></script>
+</body>
+</html>

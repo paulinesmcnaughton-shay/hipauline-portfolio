@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pauline McNaughton — Matrix Portfolio</title>
+<meta name="description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:title" content="Pauline McNaughton | Product Designer" />
+<meta property="og:description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:url" content="https://hipauline.com/matrix" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://hipauline.com/matrix" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); }
+  body {
+    overflow: hidden;
+    font-family: "SFMono-Regular", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    color: #d6ffe2;
+  }
+
+  /* ---- Random rain canvas (background, non-interactive) ---- */
+  #rain { position: fixed; inset: 0; display: block; z-index: 0; }
+
+  /* Vignette to keep hero text legible without blocking clicks */
+  #vignette {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 60% 48% at 50% 50%, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0) 72%);
+  }
+
+  /* ---- Hero content (centered, readable) ---- */
+  #hero {
+    position: fixed; inset: 0; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    pointer-events: none;            /* lets project columns behind stay clickable */
+    padding: 24px;
+  }
+  #hero h1 {
+    margin: 0;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 600; letter-spacing: 0.04em;
+    color: #eafff1;
+    text-shadow: 0 0 18px rgba(0,0,0,0.9), 0 0 42px rgba(0,0,0,0.7);
+  }
+  #hero p.role {
+    margin: 14px 0 0;
+    font-size: clamp(13px, 1.9vw, 18px);
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--neon-soft);
+    text-shadow: 0 0 14px rgba(0,0,0,0.9);
+  }
+  #hero .flicker {
+    margin-top: 18px;
+    font-size: clamp(11px, 1.4vw, 14px);
+    letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--neon);
+    text-shadow: 0 0 6px rgba(60,255,150,0.65), 0 0 16px rgba(40,220,120,0.4), 0 0 2px rgba(0,0,0,0.9);
+    animation: neon-flicker 4.5s steps(1, end) infinite;
+  }
+  #hero p.lede {
+    margin: 16px auto 0;
+    max-width: 620px;
+    font-size: clamp(12px, 1.5vw, 15px);
+    line-height: 1.6; letter-spacing: 0.01em;
+    color: rgba(214, 255, 226, 0.82);
+    text-shadow: 0 0 14px rgba(0,0,0,0.95), 0 0 28px rgba(0,0,0,0.8);
+    text-wrap: pretty;
+  }
+  @keyframes neon-flicker {
+    0%, 100% { opacity: 1; }
+    6% { opacity: 0.35; } 7% { opacity: 1; }
+    33% { opacity: 1; } 34% { opacity: 0.55; } 35% { opacity: 1; }
+    62% { opacity: 0.2; } 63% { opacity: 0.9; } 64% { opacity: 1; }
+    88% { opacity: 1; } 89% { opacity: 0.45; } 90% { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { #hero .flicker { animation: none; } }
+  #hero .hint {
+    margin-top: 24px;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(110, 200, 150, 0.55);
+    text-shadow: 0 0 12px rgba(0,0,0,0.95);
+  }
+
+  /* ---- Project-name columns layer ---- */
+  #projects { position: fixed; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+  .col {
+    position: absolute; top: 0;
+    transform: translateY(-25vh);
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    text-decoration: none; cursor: pointer; pointer-events: auto;
+    line-height: 1; will-change: transform;
+    font-size: 26px;                 /* slightly larger than the random rain */
+    color: var(--neon-soft);
+    -webkit-tap-highlight-color: transparent;
+    transition: color 220ms ease, filter 220ms ease;
+  }
+  .col::before {
+    content: ""; position: absolute; left: 50%; top: 0;
+    width: 64px; height: 100%; transform: translateX(-50%);
+    background: radial-gradient(50% 42% at 50% 50%, rgba(60,255,150,0.30) 0%, rgba(40,220,120,0.10) 45%, rgba(0,0,0,0) 75%);
+    filter: blur(6px); z-index: -1; pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+  .col span {
+    display: block; opacity: 0;
+    animation: reveal 360ms ease forwards;   /* letter-by-letter, top to bottom */
+    text-shadow: 0 0 6px rgba(60,255,150,0.55), 0 0 14px rgba(40,220,120,0.35);
+  }
+  @keyframes reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .col.hot { color: var(--neon); filter: brightness(1.5); }
+  .col.hot span {
+    text-shadow: 0 0 8px rgba(120,255,180,0.95), 0 0 20px rgba(70,255,150,0.7), 0 0 38px rgba(50,235,130,0.45);
+  }
+  .col.hot::before { opacity: 1; transform: translateX(-50%) scale(1.18); }
+  .col:focus-visible { outline: 2px solid rgba(120,255,180,0.85); outline-offset: 6px; border-radius: 3px; }
+  .col.soon { opacity: 0.62; cursor: default; }
+  /* blue easter-egg word: "Take the Blue Pill" */
+  .col.blue { color: #5b9dff; }
+  .col.blue::before {
+    background: radial-gradient(50% 42% at 50% 50%, rgba(91,157,255,0.32) 0%, rgba(60,120,230,0.12) 45%, rgba(0,0,0,0) 75%);
+  }
+  .col.blue span { text-shadow: 0 0 6px rgba(91,157,255,0.6), 0 0 14px rgba(60,120,230,0.4); }
+  .col.blue.hot { color: #9cc2ff; filter: brightness(1.4); }
+  .col.blue.hot span { text-shadow: 0 0 8px rgba(160,195,255,0.95), 0 0 20px rgba(91,157,255,0.7), 0 0 38px rgba(60,120,230,0.45); }
+  @media (prefers-reduced-motion: reduce) { .col span { animation: none; opacity: 1; } }
+</style>
+</head>
+<body data-no-spinner data-pill>
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <header id="hero" data-page>
+    <h1>Pauline Shay</h1>
+    <p class="role">Lead Product Designer</p>
+    <div class="flicker">AI-Assisted Full-Stack Product Designer</div>
+    <p class="lede">I leverage AI-native workflows (Cursor, Claude Code, v0, Codex) to eliminate the design-to-engineering handoff, shipping full-stack Next.js and Supabase applications at 10x speed.</p>
+    <div class="hint">hidden in the rain — find the glowing words</div>
+  </header>
+
+  <!-- Glowing clickable project columns, generated below from window.PROJECTS -->
+  <nav id="projects" aria-label="Featured case studies"></nav>
+
+  <!-- Shared chrome: cursor, menu, spinner, warp transitions -->
+  <script src="site.js"></script>
+
+  <script>
+  (function () {
+    const PROJECTS = window.PROJECTS;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ====================== RANDOM RAIN (canvas) ====================== */
+    const canvas = document.getElementById("rain");
+    const ctx = canvas.getContext("2d");
+    const GLYPHS = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789:・.\"=*+-<>|ﾊﾋﾌﾍﾎ";
+    const FONT = 16;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let cols = 0, drops = [];
+    let rainPaused = false;
+
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(innerWidth * dpr);
+      canvas.height = Math.floor(innerHeight * dpr);
+      canvas.style.width = innerWidth + "px";
+      canvas.style.height = innerHeight + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cols = Math.floor(innerWidth / FONT);
+      drops = new Array(cols).fill(0).map(() => Math.random() * (innerHeight / FONT));
+      ctx.font = FONT + "px monospace";
+      ctx.textBaseline = "top";
+    }
+    size();
+    window.addEventListener("resize", size);
+
+    // pause the rain when a warp transition starts
+    document.addEventListener("warp:start", () => { rainPaused = true; });
+
+    function rand(s) { return s[(Math.random() * s.length) | 0]; }
+
+    function drawFrame() {
+      ctx.fillStyle = "rgba(0, 4, 0, 0.09)";
+      ctx.fillRect(0, 0, innerWidth, innerHeight);
+      for (let i = 0; i < cols; i++) {
+        const x = i * FONT;
+        const y = drops[i] * FONT;
+        ctx.fillStyle = Math.random() > 0.975 ? "rgba(185,255,212,0.74)" : "rgba(0,214,95,0.6)";
+        ctx.fillText(rand(GLYPHS), x, y);
+        if (y > innerHeight && Math.random() > 0.975) drops[i] = Math.random() * -20;
+        drops[i] += 1;
+      }
+    }
+
+    if (reduceMotion) {
+      ctx.fillStyle = "#000400";
+      ctx.fillRect(0, 0, innerWidth, innerHeight);
+      ctx.font = FONT + "px monospace";
+      ctx.textBaseline = "top";
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < innerHeight / FONT; j += 1) {
+          if (Math.random() > 0.55) continue;
+          ctx.fillStyle = "rgba(0,170,70,0.35)";
+          ctx.fillText(rand(GLYPHS), i * FONT, j * FONT);
+        }
+      }
+    } else {
+      let last = 0;
+      const STEP = 55;
+      function loop(t) {
+        if (!rainPaused && t - last >= STEP) { drawFrame(); last = t; }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    /* ====================== PROJECT COLUMNS ====================== */
+    const layer = document.getElementById("projects");
+
+    // Rain easter eggs = projects + a blue "Take the Blue Pill" word (links out).
+    const RAIN_ITEMS = PROJECTS.concat([
+      { name: "About Me", route: "about.html", warp: "ABOUT ME", about: true },
+      { name: "Blue Pill", route: "portfolio.html", blue: true }
+    ]);
+
+    function shuffle(a) {
+      a = a.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = (Math.random() * (i + 1)) | 0;
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function buildColumn(p, leftPct) {
+      const a = document.createElement("a");
+      a.className = "col" + (p.soon ? " soon" : "") + (p.blue ? " blue" : "");
+      if (p.soon) {
+        a.setAttribute("role", "img");
+        a.setAttribute("aria-label", p.name + " \u2014 coming soon.");
+      } else if (p.blue) {
+        a.href = p.route;
+        a.dataset.warp = p.warp || p.name;          // navigate to classic portfolio (same tab) with warp
+        a.setAttribute("aria-label", "Take the blue pill \u2014 open the classic portfolio.");
+      } else {
+        a.href = p.route;
+        a.dataset.warp = p.warp || p.name;           // triggers the shared warp transition
+        a.setAttribute("aria-label", p.about ? "About Pauline Shay" : "Open " + p.name + " case study.");
+      }
+      [...p.name].forEach((ch, i) => {
+        const s = document.createElement("span");
+        s.textContent = ch;
+        s.style.animationDelay = (i * 70) + "ms";
+        a.appendChild(s);
+      });
+      a.style.left = leftPct + "%";
+      const onHot = () => {
+        const pe = document.getElementById("cursor-pill");
+        if (p.blue) {
+          if (pe) pe.classList.add("blue");
+          window.setPill && window.setPill("take the blue pill", false);
+        } else {
+          window.setPill && window.setPill(
+            p.soon ? p.name + "  \u2014 coming soon"
+            : (p.about ? "about me  \u2192" : "open " + p.name + "  \u2192"), !p.soon);
+        }
+      };
+      const offHot = () => {
+        const pe = document.getElementById("cursor-pill");
+        if (pe) pe.classList.remove("blue");
+        window.setPill && window.setPill(null, false);
+      };
+      a.addEventListener("mouseenter", onHot);
+      a.addEventListener("mouseleave", offHot);
+      a.addEventListener("focus", onHot);
+      a.addEventListener("blur", offHot);
+      return a;
+    }
+
+    if (reduceMotion) {
+      shuffle(RAIN_ITEMS).forEach((p, i) => {
+        const a = buildColumn(p, 8 + i * (84 / (RAIN_ITEMS.length - 1)));
+        a.style.transform = "translateY(14vh)";
+        layer.appendChild(a);
+      });
+    } else {
+      let order = shuffle(RAIN_ITEMS), qi = 0;
+      function next() {
+        if (qi >= order.length) { order = shuffle(RAIN_ITEMS); qi = 0; }
+        return order[qi++];
+      }
+
+      // Lane system: spread columns across fixed lanes so words never overlap.
+      const LANES = 6;                       // more lanes than concurrent columns
+      const laneBusy = new Array(LANES).fill(false);
+      function lanePos(lane) {
+        const base = 6 + lane * (88 / (LANES - 1));   // evenly spread 6%..94%
+        return base + (Math.random() * 5 - 2.5);      // gentle jitter, stays clear of neighbours
+      }
+      function freeLane() {
+        const free = [];
+        for (let i = 0; i < LANES; i++) if (!laneBusy[i]) free.push(i);
+        return free.length ? free[(Math.random() * free.length) | 0] : (Math.random() * LANES) | 0;
+      }
+
+      function spawn(lane) {
+        if (lane == null) lane = freeLane();
+        laneBusy[lane] = true;
+        const a = buildColumn(next(), lanePos(lane));
+        layer.appendChild(a);
+        const dur = 22000 + Math.random() * 16000;  // slow drift
+        const anim = a.animate(
+          [{ transform: "translateY(-25vh)" }, { transform: "translateY(118vh)" }],
+          { duration: dur, easing: "linear" }
+        );
+        const slow = () => { anim.playbackRate = 0.32; a.classList.add("hot"); };
+        const norm = () => { anim.playbackRate = 1; a.classList.remove("hot"); };
+        a.addEventListener("mouseenter", slow);
+        a.addEventListener("mouseleave", norm);
+        a.addEventListener("focus", slow);
+        a.addEventListener("blur", norm);
+        anim.onfinish = () => { a.remove(); laneBusy[lane] = false; spawn(); };
+        return anim;
+      }
+
+      // start with 4 columns in distinct lanes, already partway down
+      const CONCURRENT = 4;
+      const pool = [];
+      for (let i = 0; i < LANES; i++) pool.push(i);
+      for (let i = pool.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [pool[i], pool[j]] = [pool[j], pool[i]]; }
+      for (let i = 0; i < CONCURRENT; i++) {
+        const anim = spawn(pool[i]);
+        anim.currentTime = Math.random() * anim.effect.getTiming().duration * 0.7;
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

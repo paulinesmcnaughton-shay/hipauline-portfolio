@@ -1,0 +1,232 @@
+/* ============================================================
+   Shared case-study page styling for the Blue Pill portfolio.
+   Each project page is a thin shell: nav + hero image + a
+   blank "coming soon" body. Mirrors the main page's system.
+   ============================================================ */
+:root {
+  --accent: #2a6fdb;
+  --bg: #ffffff;
+  --bg-subtle: #fafafa;
+  --surface: #ffffff;
+  --text: #0d0e11;
+  --text-2: #565a61;
+  --text-3: #8b9098;
+  --border: #ececef;
+  --border-strong: #e0e1e5;
+  --maxw: 1140px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Schibsted Grotesk", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+/* ---------- Nav ---------- */
+nav.top {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 17px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wordmark { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; display: inline-flex; align-items: center; gap: 9px; }
+.wordmark .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-links a { font-size: 14.5px; font-weight: 500; color: var(--text-2); padding: 8px 14px; border-radius: 9px; transition: color 0.18s var(--ease), background 0.18s var(--ease); }
+.nav-links a:hover { color: var(--text); background: color-mix(in srgb, var(--text) 5%, transparent); }
+.nav-links a.matrix { color: #34e87a; font-weight: 600; text-shadow: 0 0 6px rgba(52,232,122,0.5); animation: matrixGlitch 3.6s linear infinite; }
+.nav-links a.matrix:hover { color: #5dff96; background: color-mix(in srgb, #34e87a 14%, transparent); }
+@keyframes matrixGlitch {
+  0%, 41%, 47%, 87%, 93%, 100% { text-shadow: 0 0 6px rgba(52,232,122,0.5); transform: translate(0,0) skewX(0); }
+  43% { text-shadow: -2px 0 rgba(93,255,150,0.75), 2px 0 rgba(20,150,80,0.6), 0 0 7px rgba(52,232,122,0.55); transform: translate(1px,-1px) skewX(-8deg); }
+  45% { text-shadow: 2px 0 rgba(93,255,150,0.75), -2px 0 rgba(20,150,80,0.6), 0 0 7px rgba(52,232,122,0.55); transform: translate(-1px,1px) skewX(4deg); }
+  89% { text-shadow: -2px 0 rgba(93,255,150,0.75), 2px 0 rgba(20,150,80,0.5); transform: translate(-1px,0) skewX(6deg); }
+  91% { text-shadow: 2px 0 rgba(93,255,150,0.75), -2px 0 rgba(20,150,80,0.6), 0 0 7px rgba(52,232,122,0.55); transform: translate(1px,0) skewX(-3deg); }
+}
+@media (prefers-reduced-motion: reduce) { .nav-links a.matrix { animation: none; } }
+
+/* ---------- Back link ---------- */
+.backbar { padding: 28px 0 0; }
+.back {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 14.5px; font-weight: 600; color: var(--text-2);
+  transition: gap 0.2s var(--ease), color 0.18s var(--ease);
+}
+.back .arr { transition: transform 0.2s var(--ease); }
+.back:hover { color: var(--text); }
+.back:hover .arr { transform: translateX(-3px); }
+
+/* ---------- Hero image ---------- */
+.cs-hero { padding: 26px 0 0; }
+.cs-hero-img {
+  width: 100%; aspect-ratio: 16 / 7; object-fit: cover;
+  border-radius: 20px; border: 1px solid var(--border);
+  background: #0a0d12;
+  box-shadow: 0 24px 60px rgba(16,24,40,0.12);
+  display: block;
+}
+.cs-hero-frame { position: relative; overflow: hidden; border-radius: 20px; }
+.cs-wip {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  pointer-events: none;
+}
+.cs-wip span {
+  font-family: "Schibsted Grotesk", sans-serif;
+  font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: clamp(22px, 4.4vw, 58px); color: #fff;
+  padding: 0.32em 0.7em; transform: rotate(-12deg);
+  background: rgba(20,184,166,0.92);
+  border: 2px solid rgba(255,255,255,0.85);
+  border-radius: 10px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  white-space: nowrap;
+}
+
+/* ---------- Title row ---------- */
+.cs-head { padding: 40px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.cs-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+.cs-eyebrow::before { content: ""; width: 18px; height: 1.5px; background: var(--accent); border-radius: 2px; }
+.cs-title { margin: 14px 0 0; font-size: clamp(34px, 5vw, 60px); line-height: 1.0; font-weight: 700; letter-spacing: -0.03em; }
+.cs-summary { margin: 16px 0 0; max-width: 620px; font-size: clamp(16px, 1.8vw, 18.5px); line-height: 1.62; color: var(--text-2); text-wrap: pretty; }
+.cs-meta { display: flex; flex-direction: column; gap: 14px; min-width: 180px; max-width: 280px; }
+.cs-meta .row { display: flex; flex-direction: column; gap: 3px; }
+.cs-meta .k { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+.cs-meta .v { font-size: 15px; font-weight: 600; color: var(--text); overflow-wrap: break-word; }
+
+/* ---------- Coming-soon placeholder body ---------- */
+.cs-intro { padding: clamp(44px, 7vh, 84px) 0 0; max-width: 760px; }
+.cs-intro .cs-kicker { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+.cs-intro .cs-kicker::before { content: ""; width: 18px; height: 1.5px; background: var(--accent); border-radius: 2px; }
+.cs-intro .lead { margin: 20px 0 0; font-size: clamp(19px, 2.3vw, 24px); line-height: 1.5; font-weight: 500; letter-spacing: -0.015em; color: var(--text); text-wrap: pretty; }
+.cs-intro p:not(.lead):not(.cs-kicker) { margin: 18px 0 0; font-size: clamp(16px, 1.8vw, 18px); line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
+/* ---------- Product goals ---------- */
+.cs-section { padding: clamp(44px, 7vh, 84px) 0 0; }
+.cs-section > .cs-kicker { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+.cs-section > .cs-kicker::before { content: ""; width: 18px; height: 1.5px; background: var(--accent); border-radius: 2px; }
+.goals-grid { margin: 28px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.goal {
+  border: 1px solid var(--border); border-radius: 18px;
+  background: var(--bg-subtle);
+  padding: 26px 26px 28px;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.goal:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(16,24,40,0.07); }
+.goal .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 10px;
+  font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.goal h3 { margin: 18px 0 0; font-size: clamp(18px, 2vw, 21px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.22; }
+.goal p { margin: 10px 0 0; font-size: 15.5px; line-height: 1.6; color: var(--text-2); text-wrap: pretty; }
+@media (max-width: 720px) { .goals-grid { grid-template-columns: 1fr; } }
+
+/* ---------- What I designed ---------- */
+.design-list { margin: 28px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; }
+.design-list .di {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+  font-size: clamp(16px, 1.7vw, 17.5px); font-weight: 600; letter-spacing: -0.015em; color: var(--text);
+}
+.design-list .di .tick {
+  flex: none; margin-top: 2px; width: 18px; height: 18px; border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.design-list .di .tick svg { width: 11px; height: 11px; }
+.cs-note { margin: 34px 0 0; max-width: 720px; font-size: clamp(17px, 1.9vw, 19px); line-height: 1.6; font-weight: 500; letter-spacing: -0.015em; color: var(--text); text-wrap: pretty; }
+.cs-note strong { color: var(--accent); font-weight: 700; }
+@media (max-width: 720px) { .design-list { grid-template-columns: 1fr; } }
+
+/* ---------- Key product flows ---------- */
+.flows { margin: 30px 0 0; display: flex; flex-direction: column; }
+.flow { display: grid; grid-template-columns: 56px 1fr; gap: 22px; padding: 0 0 30px; position: relative; }
+.flow:last-child { padding-bottom: 0; }
+.flow .step {
+  flex: none; width: 56px; height: 56px; border-radius: 15px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, transparent);
+  z-index: 1;
+}
+.flow:not(:last-child)::before {
+  content: ""; position: absolute; left: 27.5px; top: 56px; bottom: 6px; width: 1.5px;
+  background: linear-gradient(var(--border-strong), color-mix(in srgb, var(--border-strong) 0%, transparent));
+}
+.flow .ftext { padding-top: 4px; }
+.flow h3 { margin: 0; font-size: clamp(19px, 2.1vw, 22px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.flow p { margin: 9px 0 0; max-width: 560px; font-size: clamp(15.5px, 1.7vw, 17px); line-height: 1.6; color: var(--text-2); text-wrap: pretty; }
+
+/* ---------- Design decisions ---------- */
+.decisions { margin: 28px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 40px; }
+.decision { padding-top: 18px; border-top: 2px solid var(--accent); }
+.decision h3 { margin: 0; font-size: clamp(18px, 2vw, 21px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.22; }
+.decision p { margin: 10px 0 0; font-size: 15.5px; line-height: 1.6; color: var(--text-2); text-wrap: pretty; }
+@media (max-width: 720px) { .decisions { grid-template-columns: 1fr; gap: 26px; } }
+
+/* ---------- Closing CTA ---------- */
+.cs-close {
+  margin: clamp(56px, 9vh, 104px) 0 40px;
+  border: 1px solid var(--border); border-radius: 22px;
+  background: var(--bg-subtle);
+  padding: clamp(40px, 6vw, 64px);
+}
+.cs-close h2 { margin: 0; max-width: 600px; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.12; font-weight: 700; letter-spacing: -0.03em; text-wrap: balance; }
+.cs-close p { margin: 18px 0 0; max-width: 600px; font-size: clamp(16px, 1.8vw, 18.5px); line-height: 1.62; color: var(--text-2); text-wrap: pretty; }
+.cs-close .actions { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.cs-body { padding: clamp(48px, 8vh, 96px) 0 clamp(80px, 12vh, 140px); }
+.cs-placeholder {
+  border: 1px dashed var(--border-strong); border-radius: 18px;
+  background: var(--bg-subtle);
+  padding: clamp(48px, 8vw, 96px) 32px;
+  text-align: center;
+}
+.cs-placeholder .badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent);
+  padding: 8px 15px; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.cs-placeholder .badge .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); animation: pulse 2s var(--ease) infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 70% { box-shadow: 0 0 0 12px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.cs-placeholder h2 { margin: 22px 0 0; font-size: clamp(24px, 3vw, 34px); font-weight: 700; letter-spacing: -0.025em; }
+.cs-placeholder p { margin: 14px auto 0; max-width: 480px; font-size: 16px; line-height: 1.6; color: var(--text-2); text-wrap: pretty; }
+.cs-placeholder .actions { margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; padding: 13px 22px; border-radius: 11px; border: 1px solid transparent; cursor: pointer; transition: transform 0.18s var(--ease), background 0.18s var(--ease), border-color 0.18s var(--ease); }
+.btn .arr { transition: transform 0.2s var(--ease); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-primary:hover .arr { transform: translateX(3px); }
+.btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+.btn-ghost:hover { transform: translateY(-1px); border-color: var(--text-3); }
+
+/* ---------- Footer ---------- */
+footer.site { border-top: 1px solid var(--border); padding: 36px 0 52px; background: var(--bg-subtle); }
+.foot-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.foot-copy { font-size: 13.5px; color: var(--text-3); }
+.foot-red { display: inline-flex; align-items: center; gap: 9px; font-size: 13.5px; font-weight: 600; color: var(--text-2); padding: 9px 15px; border-radius: 999px; border: 1px solid var(--border-strong); transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease); }
+.foot-red .pill { width: 8px; height: 8px; border-radius: 50%; background: #34e87a; box-shadow: 0 0 10px rgba(52,232,122,0.7); }
+.foot-red:hover { color: #5dff96; border-color: #34e87a; background: color-mix(in srgb, #34e87a 8%, transparent); }
+
+@media (max-width: 720px) {
+  .cs-head { flex-direction: column; align-items: flex-start; }
+  .nav-links a.nav-extra { display: none; }
+}

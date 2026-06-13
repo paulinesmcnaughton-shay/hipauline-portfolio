@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pauline McNaughton | Product Designer</title>
+<meta name="description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:title" content="Pauline McNaughton | Product Designer" />
+<meta property="og:description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<meta property="og:url" content="https://hipauline.com" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pauline McNaughton | Product Designer" />
+<meta name="twitter:description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
+<link rel="canonical" href="https://hipauline.com" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  /* ============================================================
+     THE FRONT DOOR — a white gallery, one vintage machine,
+     a terminal, and a choice. Red pill warps into the Matrix
+     homepage; blue pill fades out to the traditional portfolio.
+     ============================================================ */
+  :root {
+    --term-color: #5dff96;            /* tweakable: terminal phosphor */
+    --crt-zoom: 0.8;                  /* tweakable: machine size on page */
+    --gallery: #f4f3f0;               /* soft gallery white (not pure #fff) */
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--gallery);
+    font-family: "SFMono-Regular", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    color: #1a1a1a;
+    overflow: hidden;
+    transition: opacity 0.7s ease, background 0.7s ease;
+  }
+  body.fade-out { opacity: 0; }
+
+  /* Gallery floor: a whisper of a gradient + faint contact shadow vignette */
+  #stage {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    perspective: 1400px;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 90% at 50% 12%, #fbfbfa 0%, var(--gallery) 46%, #e9e8e4 100%);
+  }
+  /* soft installation shadow under the machine */
+  #stage::after {
+    content: ""; position: absolute;
+    left: 50%; top: 64%;
+    width: min(58vw, 640px); height: 9vh;
+    transform: translate(-50%, 0);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(20,24,20,0.16), rgba(0,0,0,0) 70%);
+    filter: blur(8px);
+    pointer-events: none;
+  }
+
+  /* ---- The machine (the camera target) ---- */
+  #crt {
+    position: relative;
+    width: calc(clamp(900px, 142vw, 1560px) * var(--crt-zoom));
+    aspect-ratio: 1536 / 1024;
+    transform-origin: 44.8% 34.3%;            /* the centre of the glass */
+    transform: translate(5.2%, 14.5%) scale(0.62);
+    transition: transform var(--push-dur, 2.6s) cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
+  }
+  #crt.pushed { transform: translate(5.2%, 14.5%) scale(1.0); }
+  #crt.warp {
+    transition: transform 0.95s cubic-bezier(0.62, 0.01, 0.86, 0.32);
+    transform: translate(5.2%, 14.5%) scale(9);
+  }
+  .crt-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    -webkit-user-drag: none; user-select: none;
+    filter: drop-shadow(0 30px 40px rgba(20,24,20,0.12));
+  }
+
+  /* ---- The glass / screen, overlaid exactly on the measured black region ---- */
+  #screen {
+    position: absolute;
+    left: 31.9%; top: 19.9%;
+    width: 25.8%; height: 29.4%;
+    border-radius: 13% / 10%;
+    overflow: hidden;
+    background: #04070a;
+    box-shadow:
+      inset 0 0 14px rgba(0,0,0,0.9),
+      inset 0 0 4px rgba(0,0,0,1);
+    opacity: 1;
+  }
+  /* curved-glass vignette so the corners read as CRT bulge */
+  #screen::after {
+    content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(120% 120% at 50% 42%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.55) 100%);
+  }
+  .phosphor {
+    position: absolute; inset: 0;
+    background: radial-gradient(80% 70% at 50% 45%,
+      color-mix(in srgb, var(--term-color) 8%, transparent) 0%,
+      rgba(0,0,0,0) 70%);
+    opacity: 0; transition: opacity 0.6s ease;
+  }
+  #screen.on .phosphor { opacity: 1; }
+  .scanlines {
+    position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0.5;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px, rgba(0,0,0,0) 1.5px,
+      rgba(0,0,0,0.22) 1.5px, rgba(0,0,0,0.22) 3px);
+    mix-blend-mode: multiply;
+  }
+  /* power-on flash: a bright line that blooms to fill, then settles */
+  .powerline {
+    position: absolute; left: 4%; right: 4%; top: 50%; z-index: 6;
+    height: 2px; transform: translateY(-50%) scaleY(1);
+    background: color-mix(in srgb, var(--term-color) 70%, #ffffff);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--term-color) 80%, #fff);
+    opacity: 0;
+  }
+  #screen.boot .powerline { animation: power-on 0.55s ease-out forwards; }
+  @keyframes power-on {
+    0%   { opacity: 0; transform: translateY(-50%) scaleX(0.1) scaleY(1); }
+    18%  { opacity: 1; transform: translateY(-50%) scaleX(1) scaleY(1); }
+    55%  { opacity: 0.95; transform: translateY(-50%) scaleX(1) scaleY(140); }
+    100% { opacity: 0; transform: translateY(-50%) scaleX(1) scaleY(140); }
+  }
+
+  /* whole-screen flicker layer (used during glitch) */
+  .flicker {
+    position: absolute; inset: 0; z-index: 7; pointer-events: none;
+    background: color-mix(in srgb, var(--term-color) 22%, transparent);
+    opacity: 0;
+  }
+  #screen.glitch .flicker { animation: scr-flicker 0.42s steps(2, end) infinite; }
+  @keyframes scr-flicker { 0%,100% { opacity: 0; } 50% { opacity: calc(0.5 * var(--glitch, 0.7)); } }
+
+  /* ---- Terminal text ---- */
+  /* font scales with the machine width via cqw on #crt as the container */
+  #crt { container-type: inline-size; }
+  #terminal {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7.5% 9%;
+    color: var(--term-color);
+    text-shadow:
+      0 0 5px color-mix(in srgb, var(--term-color) 70%, transparent),
+      0 0 14px color-mix(in srgb, var(--term-color) 42%, transparent);
+    font-size: clamp(11px, 1.4cqw, 23px);
+    line-height: 1.34;
+  }
+
+  .lines { white-space: pre-wrap; word-break: break-word; }
+  .lines .ln { display: block; }
+  .lines .q { color: color-mix(in srgb, var(--term-color) 100%, #fff 12%); margin-top: 0.85em; }
+  .caret {
+    display: inline-block; width: 0.62em; height: 1.05em;
+    margin-left: 0.06em; vertical-align: -0.16em;
+    background: var(--term-color);
+    box-shadow: 0 0 7px color-mix(in srgb, var(--term-color) 75%, transparent);
+    animation: caret-blink 1.05s steps(1, end) infinite;
+  }
+  @keyframes caret-blink { 0%,52% { opacity: 1; } 53%,100% { opacity: 0; } }
+
+  /* ---- The choice ---- */
+  .choices {
+    margin-top: 1.15em;
+    display: flex; flex-direction: column; gap: 0.5em;
+  }
+  .choices[hidden] { display: none; }
+  .pill {
+    appearance: none; -webkit-appearance: none;
+    display: flex; align-items: center; gap: 0.5em;
+    width: 100%;
+    font: inherit; text-align: left; white-space: nowrap;
+    padding: 0.42em 0.62em;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid color-mix(in srgb, var(--term-color) 28%, transparent);
+    border-radius: 0.45em;
+    color: var(--term-color);
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.16s ease, border-color 0.16s ease, transform 0.12s ease, box-shadow 0.16s ease;
+    opacity: 0; transform: translateY(6px);
+  }
+  .choices.in .pill { opacity: 1; transform: none; }
+  .choices.in .pill:nth-child(1) { transition-delay: 0.04s, 0.04s, 0.04s, 0.04s; }
+  .pill .mark { opacity: 0.55; transition: opacity 0.16s ease; }
+  .pill .key {
+    margin-left: auto; font-size: 0.72em; letter-spacing: 0.12em;
+    opacity: 0.4; text-transform: uppercase;
+  }
+  .pill:hover, .pill:focus-visible {
+    outline: none;
+    background: color-mix(in srgb, var(--term-color) 12%, transparent);
+    transform: translateX(2px);
+  }
+  .pill:hover .mark, .pill:focus-visible .mark { opacity: 1; }
+
+  .pill.red {
+    color: #ff5a6a;
+    border-color: rgba(224,18,40,0.42);
+    text-shadow: 0 0 6px rgba(255,60,80,0.5);
+  }
+  .pill.red:hover, .pill.red:focus-visible {
+    background: rgba(224,18,40,0.16);
+    border-color: rgba(255,90,106,0.8);
+    box-shadow: 0 0 16px rgba(224,18,40,0.35);
+  }
+  .pill.blue {
+    color: #6fa8ff;
+    border-color: rgba(91,157,255,0.4);
+    text-shadow: 0 0 6px rgba(91,157,255,0.45);
+  }
+  .pill.blue:hover, .pill.blue:focus-visible {
+    background: rgba(60,120,230,0.16);
+    border-color: rgba(120,180,255,0.8);
+    box-shadow: 0 0 16px rgba(60,120,230,0.32);
+  }
+
+  /* glitch on the terminal text (red pill) */
+  #screen.glitch #terminal { animation: txt-glitch 0.3s steps(2, end) infinite; }
+  @keyframes txt-glitch {
+    0%   { transform: translate(0,0); text-shadow: calc(-2px * var(--glitch)) 0 rgba(255,40,60,0.8), calc(2px * var(--glitch)) 0 rgba(40,180,255,0.8), 0 0 6px var(--term-color); }
+    50%  { transform: translate(calc(1px * var(--glitch)), calc(-1px * var(--glitch))); text-shadow: calc(2px * var(--glitch)) 0 rgba(255,40,60,0.8), calc(-2px * var(--glitch)) 0 rgba(40,180,255,0.8), 0 0 6px var(--term-color); }
+    100% { transform: translate(calc(-1px * var(--glitch)), 0); text-shadow: calc(-3px * var(--glitch)) 0 rgba(255,40,60,0.8), calc(3px * var(--glitch)) 0 rgba(40,180,255,0.8), 0 0 6px var(--term-color); }
+  }
+
+  /* ---- The portal (red-pill green bloom that swallows the viewport) ---- */
+  #portal {
+    position: fixed; inset: 0; z-index: 9000; pointer-events: none;
+    opacity: 0;
+    background:
+      radial-gradient(circle at 44.8% 40%,
+        rgba(120,255,170,0.0) 0%,
+        rgba(60,255,150,0.0) 20%,
+        var(--term-color) 60%,
+        #000400 100%);
+  }
+  #portal.fire { animation: portal-bloom 0.95s ease-in forwards; }
+  @keyframes portal-bloom {
+    0%   { opacity: 0; }
+    40%  { opacity: 0.7; }
+    80%  { opacity: 1; background-size: 220% 220%; }
+    100% { opacity: 1; background: #000400; }
+  }
+
+  /* ---- Skip affordance ---- */
+  #skip {
+    position: fixed; right: 22px; bottom: 18px; z-index: 50;
+    appearance: none; background: none; border: none;
+    font-family: inherit; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(40,46,40,0.42);
+    cursor: pointer; padding: 8px 4px;
+    transition: color 0.2s ease, opacity 0.4s ease;
+  }
+  #skip:hover, #skip:focus-visible { color: rgba(20,24,20,0.85); outline: none; }
+  #skip[hidden] { display: none; }
+
+  /* a faint signature, top-left — gallery placard */
+  #placard {
+    position: fixed; left: 26px; top: 22px; z-index: 40;
+    font-size: 10.5px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(40,46,40,0.34);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+  #placard .t { color: rgba(20,24,20,0.6); }
+
+  @media (prefers-reduced-motion: reduce) {
+    #crt { transition: none; }
+    .caret { animation-duration: 0s; }
+    #screen.boot .powerline { animation: none; opacity: 0; }
+  }
+
+  /* phones: shrink padding a touch */
+  @media (max-width: 560px) {
+    #placard { left: 16px; top: 14px; }
+    #skip { right: 14px; bottom: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <div id="crt">
+      <img class="crt-img" src="assets/crt.png" alt="A vintage personal computer alone in a white room" />
+      <div id="screen">
+        <div class="phosphor"></div>
+        <div class="powerline"></div>
+        <div id="terminal">
+          <div class="lines" id="lines"></div>
+          <div class="choices" id="choices" hidden>
+            <button class="pill red" id="redPill" type="button"
+              aria-label="Take the red pill — enter the Matrix portfolio">
+              <span class="mark">&gt;</span><span>Take the Red Pill</span>
+            </button>
+            <button class="pill blue" id="bluePill" type="button"
+              aria-label="Take the blue pill — continue to the traditional portfolio">
+              <span class="mark">&gt;</span><span>Take the Blue Pill</span>
+            </button>
+          </div>
+        </div>
+        <div class="scanlines"></div>
+        <div class="flicker"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="placard"><span class="t">PAULINE SHAY</span> &nbsp;//&nbsp; SYSTEM ENTRY</div>
+  <button id="skip" type="button" hidden>skip intro &rarr;</button>
+  <div id="portal" aria-hidden="true"></div>
+
+  <!-- Intro engine -->
+  <script src="intro.js"></script>
+</body>
+</html>
