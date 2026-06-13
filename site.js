@@ -8,10 +8,10 @@
 
   /* ---- Project list (single source of truth) — newest to oldest ---- */
   const PROJECTS = [
-    { name: "WildKind",   route: "/projects/matrix/wildkind.html" },
-    { name: "ANKrD",      route: "/projects/matrix/ankrd.html" },
     { name: "Cengage",    route: "/projects/matrix/cengage.html" },
     { name: "Cisco",      route: "/projects/matrix/cisco.html",      label: "Cisco Meraki" },
+    { name: "WildKind",   route: "/projects/matrix/wildkind.html" },
+    { name: "ANKrD",      route: "/projects/matrix/ankrd.html" },
     { name: "VCA",        route: "/projects/matrix/vca.html",        label: "Mars - VCA" },
     { name: "Enora",      route: "/projects/matrix/enora.html" },
     { name: "Games",      route: "/projects/matrix/games.html",      label: "Little Sort" },
