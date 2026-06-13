@@ -38,6 +38,7 @@
     "Enora":     ["Loading Enora...", "Connecting wellness systems...", "Preparing experience archive..."],
     "RESUME":    ["Loading credentials...", "Verifying experience...", "Compiling career history..."],
     "CONTACT":   ["Establishing connection...", "Signal detected...", "Communication channel open..."],
+    "WORK WITH ME": ["Opening project workspace...", "Loading inquiry form...", "Let's build something..."],
     "Pipli":     ["Loading Pipli...", "Accessing family data...", "Preparing care experience..."],
     "Wag":       ["Loading Wag...", "Connecting pet network...", "Retrieving pet care flows..."],
     "Selected":  ["Loading selected work...", "Scanning project archive...", "Compiling shipped work..."]
@@ -190,6 +191,7 @@
       .concat(PROJECTS.map((p) => ({ name: p.name, href: p.route, warp: p.name, label: p.label, soon: p.soon })))
       .concat([
         { name: "About Me", href: ABOUT_HREF, warp: "ABOUT ME", about: true },
+        { name: "Work with me", href: "/portfolio.html#work-with-me", warp: "WORK WITH ME", workwith: true },
         { name: "Classic Portfolio", href: ORIGINAL_SITE, blue: true }
       ]);
 
@@ -197,7 +199,7 @@
     entries.forEach((p) => {
       const soon = !!p.soon;
       const a = document.createElement(soon ? "span" : "a");
-      a.className = "m-item" + (p.about ? " m-about" : "") + (p.home ? " m-home" : "") + (soon ? " m-soon" : "") + (p.blue ? " m-bluepill" : "");
+      a.className = "m-item" + (p.about ? " m-about" : "") + (p.home ? " m-home" : "") + (soon ? " m-soon" : "") + (p.blue ? " m-bluepill" : "") + (p.workwith ? " m-workwith" : "");
       if (!soon) { a.href = p.href; }
       if (!soon && !p.blue) { a.dataset.warp = p.warp; }   // classic portfolio link navigates directly, no warp
       // classic portfolio opens in the same tab
@@ -207,6 +209,9 @@
         a.innerHTML = '<span class="idx">//</span><span class="lbl">Home</span><span class="arr">\u2192</span>';
       } else if (p.about) {
         a.setAttribute("aria-label", "About Pauline Shay");
+        a.innerHTML = '<span class="idx">//</span><span class="lbl">' + label + '</span><span class="arr">\u2192</span>';
+      } else if (p.workwith) {
+        a.setAttribute("aria-label", "Work with Pauline \u2014 start a project");
         a.innerHTML = '<span class="idx">//</span><span class="lbl">' + label + '</span><span class="arr">\u2192</span>';
       } else if (p.blue) {
         a.setAttribute("aria-label", "Classic portfolio — open the classic portfolio (opens in a new tab)");

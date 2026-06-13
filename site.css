@@ -168,6 +168,10 @@ body.cursor-on .snake-letter { opacity: 1; }
   padding-bottom: 16px;
   color: var(--neon-soft);
 }
+.m-item.m-workwith {
+  border-bottom: none;
+  color: var(--neon-soft);
+}
 .m-item.m-bluepill {
   color: #5b9dff;
   border-bottom: none;
