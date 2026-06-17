@@ -308,19 +308,22 @@
       function spawn(lane) {
         if (lane == null) lane = freeLane();
         laneBusy[lane] = true;
-        const a = buildColumn(next(), lanePos(lane));
+        const p = next();
+        const a = buildColumn(p, lanePos(lane));
         layer.appendChild(a);
         const dur = 22000 + Math.random() * 16000;  // slow drift
         const anim = a.animate(
           [{ transform: "translateY(-25vh)" }, { transform: "translateY(118vh)" }],
           { duration: dur, easing: "linear" }
         );
-        const slow = () => { anim.playbackRate = 0.32; a.classList.add("hot"); };
-        const norm = () => { anim.playbackRate = 1; a.classList.remove("hot"); };
-        a.addEventListener("mouseenter", slow);
-        a.addEventListener("mouseleave", norm);
-        a.addEventListener("focus", slow);
-        a.addEventListener("blur", norm);
+        if (!p.soon) {
+          const slow = () => { anim.playbackRate = 0.32; a.classList.add("hot"); };
+          const norm = () => { anim.playbackRate = 1; a.classList.remove("hot"); };
+          a.addEventListener("mouseenter", slow);
+          a.addEventListener("mouseleave", norm);
+          a.addEventListener("focus", slow);
+          a.addEventListener("blur", norm);
+        }
         anim.onfinish = () => { a.remove(); laneBusy[lane] = false; spawn(); };
         return anim;
       }
