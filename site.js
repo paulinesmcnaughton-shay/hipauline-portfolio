@@ -335,6 +335,14 @@
     }
   });
 
+  /* ---- bfcache restore: reset warp overlay so back-navigation never shows a blank screen ---- */
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) {
+      warp.classList.remove("show", "warp");
+      warping = false;
+    }
+  });
+
   /* ---- boot ---- */
   if (document.body) mount();
   else document.addEventListener("DOMContentLoaded", mount);

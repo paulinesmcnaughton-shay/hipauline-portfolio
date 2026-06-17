@@ -178,6 +178,7 @@
 
     // pause the rain when a warp transition starts
     document.addEventListener("warp:start", () => { rainPaused = true; });
+    window.addEventListener("pageshow", (e) => { if (e.persisted) rainPaused = false; });
 
     function rand(s) { return s[(Math.random() * s.length) | 0]; }
 
