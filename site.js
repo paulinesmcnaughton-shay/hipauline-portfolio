@@ -12,10 +12,10 @@
     { name: "Cisco",      route: "/projects/matrix/cisco.html",      label: "Cisco Meraki" },
     { name: "WildKind",   route: "/projects/matrix/wildkind.html" },
     { name: "VCA",        route: "/projects/matrix/vca.html",        label: "Mars - VCA" },
-    { name: "ANKrD",      route: "/projects/matrix/ankrd.html" },
-    { name: "Enora",      route: "/projects/matrix/enora.html" },
+    { name: "ANKrD",      route: "/projects/matrix/ankrd.html",       soon: true },
+    { name: "Enora",      route: "/projects/matrix/enora.html",       soon: true },
     { name: "Games",      route: "/projects/matrix/games.html",      label: "Little Sort" },
-    { name: "Pipli",      route: "/projects/matrix/pipli.html" },
+    { name: "Pipli",      route: "/projects/matrix/pipli.html",       soon: true },
     { name: "PeteHealth", route: "/projects/matrix/pete-health.html" },
     { name: "Wag",        route: "/projects/matrix/wag.html" },
     { name: "Selected",   route: "/projects/matrix/selected-product-work.html", label: "Selected Work" }

@@ -274,6 +274,9 @@
   .work-card:hover .card-more, .work-card:focus-visible .card-more { opacity: 1; transform: none; }
   .card-more .arr { transition: transform 0.2s var(--ease); }
   .work-card:hover .card-more .arr { transform: translateX(3px); }
+  .work-card.wip { cursor: default; }
+  .work-card.wip:hover, .work-card.wip:focus-visible { transform: none; border-color: var(--border); box-shadow: none; }
+  .work-card.wip:hover .card-more, .work-card.wip:focus-visible .card-more { opacity: 0; transform: translateY(4px); }
 
   /* ---------- Combined "Selected Product Work" card (full-width) ---------- */
   .work-card.additional { grid-column: 1 / -1; }
@@ -679,15 +682,18 @@
             </div>
           </a>
 
-          <a class="work-card reveal" href="projects/ankrd.html">
-            <img class="work-hero" src="assets/work-ankrd.png" alt="ANKrD — Fintech keynote hero" loading="lazy" />
+          <a class="work-card reveal wip">
+            <div class="work-hero-frame">
+              <img class="work-hero" src="assets/work-ankrd.png" alt="ANKrD — Fintech keynote hero" loading="lazy" />
+              <div class="work-wip" aria-label="Work in progress"><span>Work in progress</span></div>
+            </div>
             <div class="card-body">
               <div class="card-top"><span class="card-title">ANKrD</span><span class="card-industry">Behavioral Finance</span></div>
               <p class="card-summary">Behavioral finance app helping people pause before impulse purchases, understand spending triggers, and build healthier shopping habits.</p>
             </div>
           </a>
 
-          <a class="work-card reveal" href="projects/enora.html">
+          <a class="work-card reveal wip">
             <div class="work-hero-frame">
               <img class="work-hero" src="assets/work-enora.png" alt="Enora — Female Wellness keynote hero" loading="lazy" />
               <div class="work-wip" aria-label="Work in progress"><span>Work in progress</span></div>
@@ -706,7 +712,7 @@
             </div>
           </a>
 
-          <a class="work-card reveal" href="projects/pipli.html">
+          <a class="work-card reveal wip">
             <div class="work-hero-frame">
               <img class="work-hero" src="assets/work-pipli.png" alt="Pipli keynote hero" loading="lazy" />
               <div class="work-wip" aria-label="Work in progress"><span>Work in progress</span></div>
