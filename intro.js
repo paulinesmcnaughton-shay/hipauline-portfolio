@@ -15,6 +15,13 @@
   var MATRIX_HOME = "portfolio2.html";     /* Red pill → Matrix portfolio */
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var compact = window.matchMedia("(max-width: 560px)").matches;
+  var LINE_WELCOME = compact
+    ? "Pauline\u2019s Portfolio."
+    : "Welcome to Pauline\u2019s Portfolio.";
+  var LINE_PROMPT = compact
+    ? "What do you decide?"
+    : "What do you decide to do?";
 
   /* ---- DOM ---- */
   var crt     = document.getElementById("crt");
@@ -41,6 +48,28 @@
   var runId = 0;            /* bumps on every (re)start to cancel stale typing */
   var booted = false;
   var transitioning = false;
+
+  /* Keep the CRT glass centered on phones so CTAs never clip off-screen */
+  function fitMobileFrame() {
+    if (!window.matchMedia("(max-width: 560px)").matches) {
+      crt.style.setProperty("--crt-nudge-x", "0px");
+      crt.style.setProperty("--crt-nudge-y", "0px");
+      return;
+    }
+    crt.style.setProperty("--crt-nudge-x", "0px");
+    crt.style.setProperty("--crt-nudge-y", "0px");
+    requestAnimationFrame(function () {
+      var s = screenEl.getBoundingClientRect();
+      var vw = window.innerWidth || document.documentElement.clientWidth;
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var idealLeft = (vw - s.width) / 2;
+      var idealTop = Math.max(12, (vh - s.height) / 2);
+      var dx = idealLeft - s.left;
+      var dy = idealTop - s.top;
+      crt.style.setProperty("--crt-nudge-x", dx.toFixed(1) + "px");
+      crt.style.setProperty("--crt-nudge-y", dy.toFixed(1) + "px");
+    });
+  }
 
   /* ---- helpers ---- */
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
@@ -96,7 +125,10 @@
     choices.hidden = false;
     /* next frame so the transition runs */
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () { choices.classList.add("in"); });
+      requestAnimationFrame(function () {
+        choices.classList.add("in");
+        fitMobileFrame();
+      });
     });
   }
 
@@ -125,8 +157,8 @@
       screenEl.classList.add("on");
       skipBtn.hidden = true;
       linesEl.innerHTML =
-        '<div class="ln">Welcome to Pauline\u2019s Portfolio.</div>' +
-        '<div class="ln q">What do you decide to do?<span class="caret"></span></div>';
+        '<div class="ln">' + LINE_WELCOME + '</div>' +
+        '<div class="ln q">' + LINE_PROMPT + '<span class="caret"></span></div>';
       showChoices();
       return;
     }
@@ -139,16 +171,18 @@
       await wait(150);
       if (id !== runId) return;
       crt.classList.add("pushed");                 /* camera pushes toward the glass */
+      fitMobileFrame();
       await wait(620 * factor());
       if (id !== runId) return;
       screenEl.classList.remove("boot");
+      fitMobileFrame();
 
-      await typeLine("Welcome to Pauline\u2019s Portfolio.");
+      await typeLine(LINE_WELCOME);
       if (id !== runId) return;
       await wait(620 * factor());
       if (id !== runId) return;
 
-      await typeLine("What do you decide to do?", "q");
+      await typeLine(LINE_PROMPT, "q");
       if (id !== runId) return;
       await wait(420 * factor());
       if (id !== runId) return;
@@ -168,9 +202,10 @@
     /* re-enable transitions next frame so later warp animates */
     requestAnimationFrame(function () { crt.style.transition = ""; });
     linesEl.innerHTML =
-      '<div class="ln">Welcome to Pauline\u2019s Portfolio.</div>' +
-      '<div class="ln q">What do you decide to do?<span class="caret"></span></div>';
+      '<div class="ln">' + LINE_WELCOME + '</div>' +
+      '<div class="ln q">' + LINE_PROMPT + '<span class="caret"></span></div>';
     showChoices();
+    fitMobileFrame();
   }
 
   /* ---- RED PILL: glitch → fly into the screen → Matrix ---- */
@@ -215,6 +250,10 @@
   redPill.addEventListener("click", takeRed);
   bluePill.addEventListener("click", takeBlue);
   skipBtn.addEventListener("click", skip);
+  window.addEventListener("resize", fitMobileFrame);
+  window.addEventListener("orientationchange", function () {
+    setTimeout(fitMobileFrame, 120);
+  });
 
   document.addEventListener("keydown", function (e) {
     if (transitioning) return;
@@ -243,4 +282,12 @@
 
   /* ---- safety net: if React never boots us, boot ourselves ---- */
   setTimeout(function () { window.__intro.boot(); }, 1700);
+
+  /* preview helper: ?skip=1 jumps straight to the choice */
+  if (/[?&]skip=1(?:&|$)/.test(location.search)) {
+    setTimeout(function () {
+      window.__intro.boot();
+      setTimeout(skip, 40);
+    }, 120);
+  }
 })();
