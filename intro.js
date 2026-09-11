@@ -134,19 +134,29 @@
     transitioning = false;
     resetVisuals();
     crt.classList.remove("pushed");
-    /* push duration tracks pace */
-    crt.style.setProperty("--push-dur", (2.2 * factor()).toFixed(2) + "s");
+    /* push duration tracks pace; mobile travels farther (0.48→1.75 vs 0.62→1.0)
+       so stretch time to keep the same camera speed as desktop */
+    var pushSec = 2.2 * factor();
+    if (isMobileEarly()) pushSec *= (1.75 / 0.48) / (1.0 / 0.62);
+    crt.style.setProperty("--push-dur", pushSec.toFixed(2) + "s");
 
     if (reduce) {
-      /* reduced motion: skip the dolly + power flash, just present it */
+      /* reduced motion: skip the dolly, still type the lines */
       crt.style.transition = "none";
       crt.classList.add("pushed");
       screenEl.classList.add("on");
       skipBtn.hidden = true;
-      linesEl.innerHTML =
-        '<div class="ln">' + LINE_WELCOME + '</div>' +
-        '<div class="ln q">' + LINE_PROMPT + (isMobileEarly() ? '' : '<span class="caret"></span>') + '</div>';
-      showChoices();
+      (async function () {
+        await typeLine(LINE_WELCOME);
+        if (id !== runId) return;
+        await wait(620 * factor());
+        if (id !== runId) return;
+        await typeLine(LINE_PROMPT, "q");
+        if (id !== runId) return;
+        await wait(420 * factor());
+        if (id !== runId) return;
+        showChoices();
+      })();
       return;
     }
 
