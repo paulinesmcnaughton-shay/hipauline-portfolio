@@ -15,13 +15,8 @@
   var MATRIX_HOME = "portfolio2.html";     /* Red pill → Matrix portfolio */
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var compact = window.matchMedia("(max-width: 560px)").matches;
-  var LINE_WELCOME = compact
-    ? "Pauline\u2019s Portfolio."
-    : "Welcome to Pauline\u2019s Portfolio.";
-  var LINE_PROMPT = compact
-    ? "What do you decide?"
-    : "What do you decide to do?";
+  var LINE_WELCOME = "Welcome to Pauline\u2019s Portfolio";
+  var LINE_PROMPT = "What do you decide to do?";
 
   /* ---- DOM ---- */
   var crt     = document.getElementById("crt");
@@ -122,6 +117,19 @@
   }
 
   function showChoices() {
+    /* blinking caret on its own row below the question, like a prompt */
+    dropCaret();
+    var caretRow = document.createElement("div");
+    caretRow.className = "ln caret-row";
+    caretRow.appendChild(makeCaret());
+    linesEl.appendChild(caretRow);
+
+    /* blank line between the caret and the CTAs */
+    var gap = document.createElement("div");
+    gap.className = "ln gap";
+    gap.innerHTML = "&nbsp;";
+    linesEl.appendChild(gap);
+
     choices.hidden = false;
     /* next frame so the transition runs */
     requestAnimationFrame(function () {
@@ -158,7 +166,7 @@
       skipBtn.hidden = true;
       linesEl.innerHTML =
         '<div class="ln">' + LINE_WELCOME + '</div>' +
-        '<div class="ln q">' + LINE_PROMPT + '<span class="caret"></span></div>';
+        '<div class="ln q">' + LINE_PROMPT + '</div>';
       showChoices();
       return;
     }
@@ -203,7 +211,7 @@
     requestAnimationFrame(function () { crt.style.transition = ""; });
     linesEl.innerHTML =
       '<div class="ln">' + LINE_WELCOME + '</div>' +
-      '<div class="ln q">' + LINE_PROMPT + '<span class="caret"></span></div>';
+      '<div class="ln q">' + LINE_PROMPT + '</div>';
     showChoices();
     fitMobileFrame();
   }
