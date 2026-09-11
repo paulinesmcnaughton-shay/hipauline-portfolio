@@ -107,3 +107,30 @@ footer.site {
   border-color: rgba(93, 255, 150, 0.10);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
+.cs-shots img {
+  border-color: rgba(93, 255, 150, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  background: #040e04;
+}
+.cs-shots figcaption { color: rgba(214, 255, 226, 0.38); }
+
+.store-badge {
+  background: rgba(0, 8, 2, 0.82);
+  border-color: rgba(93, 255, 150, 0.28);
+  color: #d6ffe2;
+}
+.store-badge:hover { background: rgba(0, 12, 4, 0.92); }
+.store-tag {
+  color: #5dff96;
+  background: rgba(93, 255, 150, 0.08);
+  border-color: rgba(93, 255, 150, 0.28);
+}
+.store-tag:hover {
+  background: rgba(93, 255, 150, 0.14);
+  border-color: rgba(93, 255, 150, 0.45);
+}
+.status-strip a {
+  color: #5dff96;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
