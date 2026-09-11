@@ -29,7 +29,7 @@
     --gallery: #f4f3f0;               /* soft gallery white (not pure #fff) */
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; height: 100dvh; }
+  html, body { margin: 0; height: 100%; }
   body {
     background: var(--gallery);
     font-family: "SFMono-Regular", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
@@ -42,9 +42,6 @@
   /* Gallery floor: a whisper of a gradient + faint contact shadow vignette */
   #stage {
     position: fixed; inset: 0;
-    width: 100%;
-    height: 100%;
-    height: 100dvh;
     display: flex; align-items: center; justify-content: center;
     perspective: 1400px;
     overflow: hidden;
@@ -386,6 +383,6 @@
   <div id="portal" aria-hidden="true"></div>
 
   <!-- Intro engine -->
-  <script src="intro.js?v=20260911k"></script>
+  <script src="intro.js?v=20260911m"></script>
 </body>
 </html>

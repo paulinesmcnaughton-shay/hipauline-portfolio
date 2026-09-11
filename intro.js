@@ -15,7 +15,10 @@
   var MATRIX_HOME = "portfolio2.html";     /* Red pill → Matrix portfolio */
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var LINE_WELCOME = "Welcome to Pauline\u2019s Portfolio";
+  function isMobileEarly() { return window.matchMedia("(max-width: 560px)").matches; }
+  var LINE_WELCOME = isMobileEarly()
+    ? "Welcome to Pauline\u2019s Portfolio"
+    : "Welcome to Pauline\u2019s Portfolio.";
   var LINE_PROMPT = "What do you decide to do?";
 
   /* ---- DOM ---- */
@@ -43,9 +46,6 @@
   var runId = 0;            /* bumps on every (re)start to cancel stale typing */
   var booted = false;
   var transitioning = false;
-
-  /* Mobile framing is CSS-only now — keep this as a no-op so old calls stay safe */
-  function fitMobileFrame() {}
 
   /* ---- helpers ---- */
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
@@ -98,26 +98,24 @@
   }
 
   function showChoices() {
-    /* blinking caret on its own row below the question, like a prompt */
-    dropCaret();
-    var caretRow = document.createElement("div");
-    caretRow.className = "ln caret-row";
-    caretRow.appendChild(makeCaret());
-    linesEl.appendChild(caretRow);
-
-    /* blank line between the caret and the CTAs */
-    var gap = document.createElement("div");
-    gap.className = "ln gap";
-    gap.innerHTML = "&nbsp;";
-    linesEl.appendChild(gap);
+    if (isMobileEarly()) {
+      /* mobile only: caret on its own row + spacer before CTAs */
+      dropCaret();
+      var caretRow = document.createElement("div");
+      caretRow.className = "ln caret-row";
+      caretRow.appendChild(makeCaret());
+      linesEl.appendChild(caretRow);
+      var gap = document.createElement("div");
+      gap.className = "ln gap";
+      gap.innerHTML = "&nbsp;";
+      linesEl.appendChild(gap);
+    }
+    /* desktop: leave caret on the question line (original behavior) */
 
     choices.hidden = false;
     /* next frame so the transition runs */
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        choices.classList.add("in");
-        fitMobileFrame();
-      });
+      requestAnimationFrame(function () { choices.classList.add("in"); });
     });
   }
 
@@ -147,7 +145,7 @@
       skipBtn.hidden = true;
       linesEl.innerHTML =
         '<div class="ln">' + LINE_WELCOME + '</div>' +
-        '<div class="ln q">' + LINE_PROMPT + '</div>';
+        '<div class="ln q">' + LINE_PROMPT + (isMobileEarly() ? '' : '<span class="caret"></span>') + '</div>';
       showChoices();
       return;
     }
@@ -160,11 +158,9 @@
       await wait(150);
       if (id !== runId) return;
       crt.classList.add("pushed");                 /* camera pushes toward the glass */
-      fitMobileFrame();
       await wait(620 * factor());
       if (id !== runId) return;
       screenEl.classList.remove("boot");
-      fitMobileFrame();
 
       await typeLine(LINE_WELCOME);
       if (id !== runId) return;
@@ -192,9 +188,8 @@
     requestAnimationFrame(function () { crt.style.transition = ""; });
     linesEl.innerHTML =
       '<div class="ln">' + LINE_WELCOME + '</div>' +
-      '<div class="ln q">' + LINE_PROMPT + '</div>';
+      '<div class="ln q">' + LINE_PROMPT + (isMobileEarly() ? '' : '<span class="caret"></span>') + '</div>';
     showChoices();
-    fitMobileFrame();
   }
 
   /* ---- RED PILL: glitch → fly into the screen → Matrix ---- */
