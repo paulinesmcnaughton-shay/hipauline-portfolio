@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Pauline M-Shay | Product Designer</title>
 <meta name="description" content="Product designer focused on AI products, zero to one experiences, complex workflows, mobile and web design, and design systems." />
 <meta property="og:title" content="Pauline M-Shay | Product Designer" />
@@ -29,7 +29,7 @@
     --gallery: #f4f3f0;               /* soft gallery white (not pure #fff) */
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
+  html, body { margin: 0; height: 100%; height: 100dvh; }
   body {
     background: var(--gallery);
     font-family: "SFMono-Regular", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
@@ -42,6 +42,9 @@
   /* Gallery floor: a whisper of a gradient + faint contact shadow vignette */
   #stage {
     position: fixed; inset: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
     display: flex; align-items: center; justify-content: center;
     perspective: 1400px;
     overflow: hidden;
@@ -280,25 +283,27 @@
     #screen.boot .powerline { animation: none; opacity: 0; }
   }
 
-  /* MOBILE ONLY — do not change desktop framing above */
+  /* MOBILE ONLY — stable CSS framing (no JS nudge / no bounce) */
   @media (max-width: 560px) {
     #placard { left: 14px; top: max(12px, env(safe-area-inset-top)); font-size: 9px; letter-spacing: 0.16em; }
     #skip { right: 12px; bottom: max(10px, env(safe-area-inset-bottom)); }
-    #stage::after { width: min(72vw, 340px); top: 64%; height: 5vh; opacity: 0.7; }
+    #stage::after { width: min(70vw, 320px); top: 68%; height: 5vh; opacity: 0.65; }
 
     #crt {
       flex-shrink: 0;
-      width: min(168vw, 720px);
-      transform-origin: 50% 42%;
-      transform: translate(calc(var(--crt-nudge-x, 0px)), calc(2% + var(--crt-nudge-y, 0px))) scale(0.82);
+      /* wide enough that the glass reads clearly; origin locked to glass center */
+      width: min(155vw, 640px);
+      transform-origin: 44.8% 34.3%;
+      /* 5.2% X matches desktop — keeps the glass centered in the phone */
+      transform: translate(5.2%, 4%) scale(0.9);
     }
-    #crt.pushed { transform: translate(calc(var(--crt-nudge-x, 0px)), calc(var(--crt-nudge-y, 0px))) scale(1.08); }
-    #crt.warp { transform: translate(calc(var(--crt-nudge-x, 0px)), calc(var(--crt-nudge-y, 0px))) scale(8); }
+    #crt.pushed { transform: translate(5.2%, 1%) scale(1.05); }
+    #crt.warp { transform: translate(5.2%, 1%) scale(8); }
 
     #terminal {
       justify-content: flex-start;
-      padding: 4.5% 5% 3.5%;
-      font-size: clamp(7.5px, 1.55cqw, 9px);
+      padding: 4.5% 5.5% 3.5%;
+      font-size: clamp(7.5px, 1.7cqw, 9px);
       line-height: 1.18;
     }
     .lines .ln { white-space: normal; }
@@ -324,22 +329,27 @@
 
   @media (max-width: 380px) {
     #crt {
-      width: min(178vw, 700px);
-      transform: translate(calc(var(--crt-nudge-x, 0px)), calc(1% + var(--crt-nudge-y, 0px))) scale(0.84);
+      width: min(162vw, 620px);
+      transform: translate(5.2%, 3%) scale(0.92);
     }
-    #crt.pushed { transform: translate(calc(var(--crt-nudge-x, 0px)), calc(var(--crt-nudge-y, 0px))) scale(1.12); }
-    #crt.warp { transform: translate(calc(var(--crt-nudge-x, 0px)), calc(var(--crt-nudge-y, 0px))) scale(8); }
+    #crt.pushed { transform: translate(5.2%, 0.5%) scale(1.06); }
+    #crt.warp { transform: translate(5.2%, 0.5%) scale(8); }
     #terminal {
-      padding: 4% 4.5% 3%;
-      font-size: clamp(7px, 1.6cqw, 8.5px);
+      padding: 4% 5% 3%;
+      font-size: clamp(7px, 1.75cqw, 8.5px);
     }
   }
 
   @media (max-width: 560px) and (max-height: 700px) {
-    #crt.pushed { transform: translate(calc(var(--crt-nudge-x, 0px)), calc(-1% + var(--crt-nudge-y, 0px))) scale(1.02); }
+    #crt {
+      width: min(148vw, 600px);
+      transform: translate(5.2%, 2%) scale(0.88);
+    }
+    #crt.pushed { transform: translate(5.2%, 0%) scale(1.0); }
+    #crt.warp { transform: translate(5.2%, 0%) scale(8); }
     #terminal {
-      padding: 3.5% 4.5% 2.5%;
-      font-size: clamp(7px, 1.5cqw, 8px);
+      padding: 3.5% 5% 2.5%;
+      font-size: clamp(7px, 1.65cqw, 8px);
     }
     .choices { margin-top: 1.05em; gap: 0.4em; }
   }
@@ -376,6 +386,6 @@
   <div id="portal" aria-hidden="true"></div>
 
   <!-- Intro engine -->
-  <script src="intro.js?v=20260911f"></script>
+  <script src="intro.js?v=20260911k"></script>
 </body>
 </html>

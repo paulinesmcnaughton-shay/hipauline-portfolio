@@ -44,27 +44,8 @@
   var booted = false;
   var transitioning = false;
 
-  /* Keep the CRT glass centered on phones so CTAs never clip off-screen */
-  function fitMobileFrame() {
-    if (!window.matchMedia("(max-width: 560px)").matches) {
-      crt.style.setProperty("--crt-nudge-x", "0px");
-      crt.style.setProperty("--crt-nudge-y", "0px");
-      return;
-    }
-    crt.style.setProperty("--crt-nudge-x", "0px");
-    crt.style.setProperty("--crt-nudge-y", "0px");
-    requestAnimationFrame(function () {
-      var s = screenEl.getBoundingClientRect();
-      var vw = window.innerWidth || document.documentElement.clientWidth;
-      var vh = window.innerHeight || document.documentElement.clientHeight;
-      var idealLeft = (vw - s.width) / 2;
-      var idealTop = Math.max(12, (vh - s.height) / 2);
-      var dx = idealLeft - s.left;
-      var dy = idealTop - s.top;
-      crt.style.setProperty("--crt-nudge-x", dx.toFixed(1) + "px");
-      crt.style.setProperty("--crt-nudge-y", dy.toFixed(1) + "px");
-    });
-  }
+  /* Mobile framing is CSS-only now — keep this as a no-op so old calls stay safe */
+  function fitMobileFrame() {}
 
   /* ---- helpers ---- */
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
@@ -258,10 +239,6 @@
   redPill.addEventListener("click", takeRed);
   bluePill.addEventListener("click", takeBlue);
   skipBtn.addEventListener("click", skip);
-  window.addEventListener("resize", fitMobileFrame);
-  window.addEventListener("orientationchange", function () {
-    setTimeout(fitMobileFrame, 120);
-  });
 
   document.addEventListener("keydown", function (e) {
     if (transitioning) return;
